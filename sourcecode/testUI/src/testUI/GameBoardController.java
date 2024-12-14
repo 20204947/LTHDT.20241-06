@@ -21,33 +21,53 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
-public class Controller{
+public class GameBoardController{
 	
-	Player player1 = new Player(true);
-	Player player2 = new Player(false);
+	List<SmallGem> gemList = new ArrayList<SmallGem>();	
+	GameBoard gameBoard = new GameBoard();
 	
-	static int count = 0;
+	@FXML
+	private Text id1;
+	
+	@FXML
+	private Text id2;
+	
+	@FXML
+	private Text name1;
+	
+	@FXML
+	private Text name2;
+	
+	static int count = 1;
 	
 	public void changeTurn() {
 		if((count%2) == 0) {
-			player1.setTurn(true);
-			player2.setTurn(false);
-			flag1.setVisible(false);
-			flag2.setVisible(true);
-		}else {
-			player1.setTurn(false);
-			player2.setTurn(true);
+			gameBoard.getPlayer1().setTurn(true);
+			gameBoard.getPlayer2().setTurn(false);
 			flag1.setVisible(true);
 			flag2.setVisible(false);
+		}else {
+			gameBoard.getPlayer1().setTurn(false);
+			gameBoard.getPlayer2().setTurn(true);
+			flag1.setVisible(false);
+			flag2.setVisible(true);
 		}
 		count++;
 	}
 	
+	public void setIdAndName(String id1, String name1, String id2, String name2) {
+		this.id1.setText(id1);
+		this.name1.setText(name1);
+		this.id2.setText(id2);
+		this.name2.setText(name2);
+		
+		this.gameBoard.getPlayer1().setId(id1);
+		this.gameBoard.getPlayer1().setName(name1);
+		this.gameBoard.getPlayer2().setId(id2);
+		this.gameBoard.getPlayer2().setName(name2);
+	}
 	
-	List<SmallGem> gemList = new ArrayList<SmallGem>();	
-	GameBoard gameBoard = new GameBoard();
 	int indexCell = 0;
-	private boolean flag;
 	
 	@FXML
 	private ImageView myImage;
@@ -122,6 +142,11 @@ public class Controller{
 	
 	@FXML
 	public void initialize() {
+		indexCell=0;
+		id1.setText(gameBoard.getPlayer1().getId());
+		id2.setText(gameBoard.getPlayer2().getId());
+		name1.setText(gameBoard.getPlayer1().getName());
+		name2.setText(gameBoard.getPlayer2().getName());
 		cungChieuButton.setVisible(false);
 		nguocChieuButton.setVisible(false);
 		cungChieuButton1.setVisible(false);
@@ -131,17 +156,36 @@ public class Controller{
 		scoreText1.setText(Integer.toString(0));
 		scoreText2.setText(Integer.toString(0));
 		ToaDo td = new ToaDo();
-		for(Square cell : gameBoard.getListCell()){
-			for(Gem gem : cell.getListGem()) {
-				td = dichDen(cell.getId());
-				if((cell != gameBoard.getListCell()[0]) && (cell != gameBoard.getListCell()[6])) {
+		System.out.println("----------");
+		for(int i = 0; i<12; i++) {
+			for(Gem gem : gameBoard.getListCell()[i].getListGem()) {
+				System.out.println("xxx = " + i);
+				td = dichDen(i);
+				if((gameBoard.getListCell()[i] != gameBoard.getListCell()[0]) && (gameBoard.getListCell()[i] != gameBoard.getListCell()[6])) {
 					gem.getImage().setLayoutX(td.getX());
 					gem.getImage().setLayoutY(td.getY());
+				}else if (gameBoard.getListCell()[i] == gameBoard.getListCell()[0]) {
+					gem.getImage().setLayoutX(25);
+					gem.getImage().setLayoutY(75);
+				} else {
+					gem.getImage().setLayoutX(625);
+					gem.getImage().setLayoutY(75);
 				}
 				imagePane.getChildren().add(gem.getImage());
 			}
-			System.out.println(cell.getValue());
 		}
+//		for(Square cell : gameBoard.getListCell()){
+//			for(Gem gem : cell.getListGem()) {
+//				System.out.println("xxx = " + cell.getId());
+//				td = dichDen(cell.getId());
+//				if((cell != gameBoard.getListCell()[0]) && (cell != gameBoard.getListCell()[6])) {
+//					gem.getImage().setLayoutX(td.getX());
+//					gem.getImage().setLayoutY(td.getY());
+//				}
+//				imagePane.getChildren().add(gem.getImage());
+//			}
+//			System.out.println(cell.getValue());
+//		}
 	}
 
 	
@@ -309,8 +353,8 @@ public class Controller{
 	        // Thêm tạm dừng sau mỗi hiệu ứng
 	        PauseTransition pause = new PauseTransition(Duration.millis(50));
 	        sequentialTransition.getChildren().add(pause);
-	        player1.setScore(player1.getScore()+gem.getValue());
-	        scoreText1.setText(Integer.toString(player1.getScore()));
+	        gameBoard.getPlayer1().setScore(gameBoard.getPlayer1().getScore()+gem.getValue());
+	        scoreText1.setText(Integer.toString(gameBoard.getPlayer1().getScore()));
 	    }
 	    
 	    gameBoard.getListCell()[indexCell].getListGem().clear();
@@ -339,8 +383,8 @@ public class Controller{
 	        // Thêm tạm dừng sau mỗi hiệu ứng
 	        PauseTransition pause = new PauseTransition(Duration.millis(50));
 	        sequentialTransition.getChildren().add(pause);
-	        player2.setScore(player2.getScore()+gem.getValue());
-	        scoreText2.setText(Integer.toString(player2.getScore()));
+	        gameBoard.getPlayer2().setScore(gameBoard.getPlayer2().getScore()+gem.getValue());
+	        scoreText2.setText(Integer.toString(gameBoard.getPlayer2().getScore()));
 	    }
 	    
 	    gameBoard.getListCell()[indexCell].getListGem().clear();
@@ -353,7 +397,7 @@ public class Controller{
     			if(gameBoard.getListCell()[(indexCell + 1)%12].getListGem().isEmpty()) {
     				return;
     			}
-    			if(player1.isTurn()) {
+    			if(!gameBoard.getPlayer1().isTurn()) {
             		indexCell = (indexCell + 1)%12;
     	        	SequentialTransition transitionEat1 = eat1();
     	        	transitionEat1.setOnFinished(event -> {
@@ -381,7 +425,7 @@ public class Controller{
 			if(gameBoard.getListCell()[(12+ indexCell - 1)%12].getListGem().isEmpty()) {
 				return;
 			}
-			if(player1.isTurn()) {
+			if(!gameBoard.getPlayer1().isTurn()) {
         		indexCell = (12+ indexCell - 1)%12;
 	        	SequentialTransition transitionEat1 = eat1();
 	        	transitionEat1.setOnFinished(event -> {
@@ -437,7 +481,7 @@ public class Controller{
 	
 	@FXML
 	public void click1(){
-		if (player1.isTurn()) {
+		if (gameBoard.getPlayer1().isTurn()) {
 			cungChieuButton.setVisible(true);
 			nguocChieuButton.setVisible(true);
 		}else {
@@ -449,7 +493,7 @@ public class Controller{
 
 	@FXML
 	public void click2() {
-		if (player1.isTurn()) {
+		if (gameBoard.getPlayer1().isTurn()) {
 			cungChieuButton.setVisible(true);
 			nguocChieuButton.setVisible(true);
 		}else {
@@ -460,7 +504,7 @@ public class Controller{
 	}
 	@FXML
 	public void click3() {
-		if (player1.isTurn()) {
+		if (gameBoard.getPlayer1().isTurn()) {
 			cungChieuButton.setVisible(true);
 			nguocChieuButton.setVisible(true);
 		}else {
@@ -471,7 +515,7 @@ public class Controller{
 	}
 	@FXML
 	public void click4() {
-		if (player1.isTurn()) {
+		if (gameBoard.getPlayer1().isTurn()) {
 			cungChieuButton.setVisible(true);
 			nguocChieuButton.setVisible(true);
 		}else {
@@ -482,13 +526,18 @@ public class Controller{
 	}
 	@FXML
 	public void click5() {
-		cungChieuButton.setVisible(true);
-		nguocChieuButton.setVisible(true);
+		if (gameBoard.getPlayer1().isTurn()) {
+			cungChieuButton.setVisible(true);
+			nguocChieuButton.setVisible(true);
+		}else {
+			cungChieuButton1.setVisible(true);
+			nguocChieuButton1.setVisible(true);
+		}
 		indexCell = 5;
 	}
 	@FXML
 	public void click7() {
-		if (player1.isTurn()) {
+		if (gameBoard.getPlayer1().isTurn()) {
 			cungChieuButton.setVisible(true);
 			nguocChieuButton.setVisible(true);
 		}else {
@@ -499,7 +548,7 @@ public class Controller{
 	}
 	@FXML
 	public void click8() {
-		if (player1.isTurn()) {
+		if (gameBoard.getPlayer1().isTurn()) {
 			cungChieuButton.setVisible(true);
 			nguocChieuButton.setVisible(true);
 		}else {
@@ -510,7 +559,7 @@ public class Controller{
 	}
 	@FXML
 	public void click9() {
-		if (player1.isTurn()) {
+		if (gameBoard.getPlayer1().isTurn()) {
 			cungChieuButton.setVisible(true);
 			nguocChieuButton.setVisible(true);
 		}else {
@@ -521,7 +570,7 @@ public class Controller{
 	}
 	@FXML
 	public void click10() {
-		if (player1.isTurn()) {
+		if (gameBoard.getPlayer1().isTurn()) {
 			cungChieuButton.setVisible(true);
 			nguocChieuButton.setVisible(true);
 		}else {
@@ -532,7 +581,7 @@ public class Controller{
 	}
 	@FXML
 	public void click11() {
-		if (player1.isTurn()) {
+		if (gameBoard.getPlayer1().isTurn()) {
 			cungChieuButton.setVisible(true);
 			nguocChieuButton.setVisible(true);
 		}else {
@@ -555,6 +604,8 @@ public class Controller{
 	            
 	            EndGameController endGameController = loader.getController();
 	            
+	            endGameController.setPlayer(id1.getText(), name1.getText(), Integer.parseInt(scoreText1.getText()), id2.getText(), name2.getText(), Integer.parseInt(scoreText2.getText()));
+	            
 	            endGameController.setMatchStage(((Stage) imagePane.getScene().getWindow()));
 	            
 	            popupStage.showAndWait();
@@ -563,8 +614,4 @@ public class Controller{
 	        }
 	    });
 	}
-
-	
-
-	
 }

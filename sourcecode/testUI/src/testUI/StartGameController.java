@@ -7,9 +7,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class StartGameController {
+	
+	@FXML
+	private TextField id1;
+	
+	@FXML
+	private TextField id2;
+	
+	@FXML
+	private TextField name1;
+	@FXML
+	private TextField name2;
 
     @FXML
     private Button startButton;
@@ -27,14 +39,6 @@ public class StartGameController {
     @FXML
     private void startGame() {
         try {
-            // Load màn hình Match
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Match.fxml"));
-            Parent root = loader.load();
-
-            Stage matchStage = new Stage();
-            matchStage.setScene(new Scene(root));
-            matchStage.setTitle("Tro Choi O An Quan");
-            matchStage.show();
             
             if (mainStage != null) {
                 mainStage.close();
@@ -42,6 +46,18 @@ public class StartGameController {
             
             Stage currentStage = (Stage) startButton.getScene().getWindow();
             currentStage.close();
+            // Load màn hình Match
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("GameBoard.fxml"));
+            Parent root = loader.load();
+            
+            GameBoardController gameBoardController = loader.getController();
+            
+            gameBoardController.setIdAndName(id1.getText(), name1.getText(), id2.getText(), name2.getText());
+        	
+            Stage matchStage = new Stage();
+            matchStage.setScene(new Scene(root));
+            matchStage.setTitle("Tro Choi O An Quan");
+            matchStage.show();
 
         } catch (IOException e) {
             e.printStackTrace();

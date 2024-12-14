@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #e0ffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="testUI.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #e0ffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="testUI.GameBoardController">
    <children>
       <Pane fx:id="imagePane" layoutX="150.0" layoutY="350.0" prefHeight="200.0" prefWidth="700.0" style="-fx-border-color: #000;">
          <children>
@@ -76,12 +76,12 @@
             <Font name="Jokerman" size="18.0" />
          </font>
       </Text>
-      <Text fill="RED" layoutX="600.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20215028">
+      <Text fx:id="id1" fill="RED" layoutX="600.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20215028">
          <font>
             <Font name="Jokerman" size="18.0" />
          </font>
       </Text>
-      <Text fill="RED" layoutX="600.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DAT">
+      <Text fx:id="name1" fill="RED" layoutX="600.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DAT">
          <font>
             <Font name="Jokerman" size="18.0" />
          </font>
@@ -96,12 +96,12 @@
             <Font name="Jokerman" size="18.0" />
          </font>
       </Text>
-      <Text fill="BLUE" layoutX="600.0" layoutY="709.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DUC">
+      <Text fx:id="name2" fill="BLUE" layoutX="600.0" layoutY="709.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DUC">
          <font>
             <Font name="Jokerman" size="18.0" />
          </font>
       </Text>
-      <Text fill="BLUE" layoutX="600.0" layoutY="680.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20215038">
+      <Text fx:id="id2" fill="BLUE" layoutX="600.0" layoutY="680.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20215038">
          <font>
             <Font name="Jokerman" size="18.0" />
          </font>
