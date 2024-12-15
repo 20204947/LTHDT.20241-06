@@ -92,6 +92,14 @@ public class EndGameController {
             gameBoardController.setIdAndName(player1.getId(), player1.getName(), player2.getId(), player2.getName());
             
             Stage matchStage = new Stage();
+            
+            matchStage.setResizable(false);
+            
+            matchStage.setOnCloseRequest(event -> {
+                event.consume();
+            });
+            
+            
             matchStage.setScene(new Scene(root));
             matchStage.setTitle("Tro Choi O An Quan");
             matchStage.show();

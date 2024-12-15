@@ -55,6 +55,9 @@ public class StartGameController {
             gameBoardController.setIdAndName(id1.getText(), name1.getText(), id2.getText(), name2.getText());
         	
             Stage matchStage = new Stage();
+            
+            matchStage.setResizable(false);
+            
             matchStage.setScene(new Scene(root));
             matchStage.setTitle("Tro Choi O An Quan");
             matchStage.show();

@@ -36,6 +36,60 @@ public class GameBoardController{
 	@FXML
 	private Text name2;
 	
+	@FXML
+	private Text choosing1;
+	
+	@FXML
+	private Text choosing2;
+	
+	@FXML
+	private Text cell0;
+	
+	@FXML
+	private Text cell1;
+	
+	@FXML
+	private Text cell2;
+	
+	@FXML
+	private Text cell3;
+	
+	@FXML
+	private Text cell4;
+	
+	@FXML
+	private Text cell5;
+	
+	@FXML
+	private Text cell6;
+	
+	@FXML
+	private Text cell7;
+	
+	@FXML
+	private Text cell8;
+	
+	@FXML
+	private Text cell9;
+	
+	@FXML
+	private Text cell10;
+	
+	@FXML
+	private Text cell11;
+	
+	private Text[] listText;
+	
+	public void initListText() {
+		this.listText = new Text[] {cell0, cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9, cell10, cell11};
+	}
+	
+	public void setListText() {
+		for(int i = 0; i<12; i++) {
+			this.listText[i].setText(Integer.toString(gameBoard.getListCell()[i].getValue()));
+		}
+	}
+	
 	static int count = 1;
 	
 	public void changeTurn() {
@@ -97,9 +151,9 @@ public class GameBoardController{
 	@FXML
 	private ImageView flag2;
 	
-	ToaDo td = new ToaDo();
+	Coordinate td = new Coordinate();
 	
-	public ToaDo dichDen(int i) {
+	public Coordinate dichDen(int i) {
 		
 		switch (i) {
 			case 0: 
@@ -141,6 +195,8 @@ public class GameBoardController{
 	@FXML
 	public void initialize() {
 		indexCell=0;
+		initListText();
+		setListText();
 		id1.setText(gameBoard.getPlayer1().getId());
 		id2.setText(gameBoard.getPlayer2().getId());
 		name1.setText(gameBoard.getPlayer1().getName());
@@ -153,7 +209,7 @@ public class GameBoardController{
 		flag2.setVisible(false);
 		scoreText1.setText(Integer.toString(0));
 		scoreText2.setText(Integer.toString(0));
-		ToaDo td = new ToaDo();
+		Coordinate td = new Coordinate();
 		for(int i = 0; i<12; i++) {
 			for(Gem gem : gameBoard.getListCell()[i].getListGem()) {
 				td = dichDen(i);
@@ -161,11 +217,11 @@ public class GameBoardController{
 					gem.getImage().setLayoutX(td.getX());
 					gem.getImage().setLayoutY(td.getY());
 				}else if (gameBoard.getListCell()[i] == gameBoard.getListCell()[0]) {
-					gem.getImage().setLayoutX(25);
-					gem.getImage().setLayoutY(75);
+					gem.getImage().setLayoutX(30);
+					gem.getImage().setLayoutY(25);
 				} else {
-					gem.getImage().setLayoutX(625);
-					gem.getImage().setLayoutY(75);
+					gem.getImage().setLayoutX(620);
+					gem.getImage().setLayoutY(125);
 				}
 				imagePane.getChildren().add(gem.getImage());
 			}
@@ -180,6 +236,8 @@ public class GameBoardController{
 	    nguocChieuButton.setVisible(false);
 	    cungChieuButton1.setVisible(false);
 	    nguocChieuButton1.setVisible(false);
+	    choosing1.setText("0");
+	    choosing2.setText("0");
 	    changeTurn();
 	}
 
@@ -191,11 +249,18 @@ public class GameBoardController{
 		    });
 	    	transition.play();
         } else if((indexCell == 0) || (indexCell == 6)) {
+        	setListText();
+        	if(endGame()) {
+            	GameOver();
+            }
         	return;
-        } else if((gameBoard.getListCell()[indexCell].getListGem().isEmpty()) && (!gameBoard.getListCell()[indexCell+1].getListGem().isEmpty())){
+        } else if((gameBoard.getListCell()[indexCell].getListGem().isEmpty()) && (!gameBoard.getListCell()[(indexCell+1)%12].getListGem().isEmpty())){
         	eatByPlayerMove1();
-        } else if(endGame()) {
-        	GameOver();
+        } else {
+        	setListText();
+        	if(endGame()) {
+            	GameOver();
+            }
         }
 	}
 
@@ -215,7 +280,7 @@ public class GameBoardController{
 	        double actualX = gem.getImage().getTranslateX() + gem.getImage().getLayoutX();
 	        double actualY = gem.getImage().getTranslateY() + gem.getImage().getLayoutY();
 
-	        ToaDo td = dichDen((indexCell + j) % 12);
+	        Coordinate td = dichDen((indexCell + j) % 12);
 
 	        translate.setByX(td.getX() - actualX);
 	        translate.setByY(td.getY() - actualY);
@@ -248,11 +313,18 @@ public class GameBoardController{
 		    });
 	    	transition.play();
         } else if((indexCell == 0) || (indexCell == 6)) {
+        	setListText();
+        	if(endGame()) {
+            	GameOver();
+            }
         	return;
-        } else if((gameBoard.getListCell()[indexCell].getListGem().isEmpty()) && (!gameBoard.getListCell()[indexCell+1].getListGem().isEmpty())){
+        } else if((gameBoard.getListCell()[indexCell].getListGem().isEmpty()) && (!gameBoard.getListCell()[(12+indexCell-1)%12].getListGem().isEmpty())){
         	eatByPlayerMove2();
-        } else if(endGame()) {
-        	GameOver();
+        } else {
+        	setListText();
+        	if(endGame()) {
+            	GameOver();
+            }
         }
 	}
 
@@ -272,7 +344,7 @@ public class GameBoardController{
 	        double actualX = gem.getImage().getTranslateX() + gem.getImage().getLayoutX();
 	        double actualY = gem.getImage().getTranslateY() + gem.getImage().getLayoutY();
 
-	        ToaDo td = dichDen((12 + indexCell - j) % 12);
+	        Coordinate td = dichDen((12 + indexCell - j) % 12);
 
 	        translate.setByX(td.getX() - actualX);
 	        translate.setByY(td.getY() - actualY);
@@ -301,6 +373,8 @@ public class GameBoardController{
 	    nguocChieuButton.setVisible(false);
 	    cungChieuButton1.setVisible(false);
 	    nguocChieuButton1.setVisible(false);
+	    choosing1.setText("0");
+	    choosing2.setText("0");
 	    changeTurn();
 	}
 
@@ -315,7 +389,7 @@ public class GameBoardController{
 
 	        double actualX = gem.getImage().getTranslateX() + gem.getImage().getLayoutX();
 	        double actualY = gem.getImage().getTranslateY() + gem.getImage().getLayoutY();
-	        ToaDo td = dichDen(12);
+	        Coordinate td = dichDen(12);
 
 	        translate.setByX(td.getX() - actualX);
 	        translate.setByY(td.getY() - actualY);
@@ -345,7 +419,7 @@ public class GameBoardController{
 
 	        double actualX = gem.getImage().getTranslateX() + gem.getImage().getLayoutX();
 	        double actualY = gem.getImage().getTranslateY() + gem.getImage().getLayoutY();
-	        ToaDo td = dichDen(13);
+	        Coordinate td = dichDen(13);
 
 	        translate.setByX(td.getX() - actualX);
 	        translate.setByY(td.getY() - actualY);
@@ -368,6 +442,7 @@ public class GameBoardController{
 	public void eatByPlayerMove1() {
     		if(gameBoard.getListCell()[indexCell].getListGem().isEmpty()) {
     			if(gameBoard.getListCell()[(indexCell + 1)%12].getListGem().isEmpty()) {
+    				setListText();
     				if(endGame()) {
         				GameOver();
     				}
@@ -394,6 +469,7 @@ public class GameBoardController{
     	        	transitionEat2.play();
             	}
     		}else {
+    			setListText();
     			if(endGame()) {
         			GameOver();
     			}
@@ -403,6 +479,7 @@ public class GameBoardController{
 	public void eatByPlayerMove2() {
 		if(gameBoard.getListCell()[indexCell].getListGem().isEmpty()) {
 			if(gameBoard.getListCell()[(12+ indexCell - 1)%12].getListGem().isEmpty()) {
+				setListText();
     			if(endGame()) {
         			GameOver();
     			}
@@ -429,6 +506,7 @@ public class GameBoardController{
 	        	transitionEat2.play();
         	}
 		}else {
+			setListText();
 			if(endGame()) {
     			GameOver();
 			}
@@ -466,73 +544,83 @@ public class GameBoardController{
 	
 	@FXML
 	public void click1(){
-		if(gameBoard.getPlayer1().isTurn()) {
+		if(gameBoard.getPlayer1().isTurn() && (gameBoard.getListCell()[1].getValue()!=0)) {
 			click();
 			indexCell = 1;
+			choosing1.setText(Integer.toString(indexCell));
 		}
 	}
 
 	@FXML
 	public void click2() {
-		if(gameBoard.getPlayer1().isTurn()) {
+		if(gameBoard.getPlayer1().isTurn() && (gameBoard.getListCell()[2].getValue()!=0)) {
 			click();
 			indexCell = 2;
+			choosing1.setText(Integer.toString(indexCell));
 		}
 	}
 	@FXML
 	public void click3() {
-		if(gameBoard.getPlayer1().isTurn()) {
+		if(gameBoard.getPlayer1().isTurn() && (gameBoard.getListCell()[3].getValue()!=0)) {
 			click();
 			indexCell = 3;
+			choosing1.setText(Integer.toString(indexCell));
 		}
 	}
 	@FXML
 	public void click4() {
-		if(gameBoard.getPlayer1().isTurn()) {
+		if(gameBoard.getPlayer1().isTurn() && (gameBoard.getListCell()[4].getValue()!=0)) {
 			click();
 			indexCell = 4;
+			choosing1.setText(Integer.toString(indexCell));
 		}
 	}
 	@FXML
 	public void click5() {
-		if(gameBoard.getPlayer1().isTurn()) {
+		if(gameBoard.getPlayer1().isTurn() && (gameBoard.getListCell()[5].getValue()!=0)) {
 			click();
 			indexCell = 5;
+			choosing1.setText(Integer.toString(indexCell));
 		}
 	}
 	@FXML
 	public void click7() {
-		if(!gameBoard.getPlayer1().isTurn()) {
+		if(!gameBoard.getPlayer1().isTurn() && (gameBoard.getListCell()[7].getValue()!=0)) {
 			click();
 			indexCell = 7;
+			choosing2.setText(Integer.toString(indexCell));
 		}
 	}
 	@FXML
 	public void click8() {
-		if(!gameBoard.getPlayer1().isTurn()) {
+		if(!gameBoard.getPlayer1().isTurn() && (gameBoard.getListCell()[8].getValue()!=0)) {
 			click();
 			indexCell = 8;
+			choosing2.setText(Integer.toString(indexCell));
 		}
 	}
 	@FXML
 	public void click9() {
-		if(!gameBoard.getPlayer1().isTurn()) {
+		if(!gameBoard.getPlayer1().isTurn() && (gameBoard.getListCell()[9].getValue()!=0)) {
 			click();
 			indexCell = 9;
+			choosing2.setText(Integer.toString(indexCell));
 		}
 	}
 	@FXML
 	public void click10() {
-		if(!gameBoard.getPlayer1().isTurn()) {
+		if(!gameBoard.getPlayer1().isTurn() && (gameBoard.getListCell()[10].getValue()!=0)) {
 			click();
 			indexCell = 10;
+			choosing2.setText(Integer.toString(indexCell));
 		}
 	}
 	@FXML
 	public void click11() {
-		if(!gameBoard.getPlayer1().isTurn()) {
+		if(!gameBoard.getPlayer1().isTurn() && (gameBoard.getListCell()[11].getValue()!=0)) {
 			click();
 			indexCell = 11;
+			choosing2.setText(Integer.toString(indexCell));
 		}
 	}
 	
@@ -541,8 +629,15 @@ public class GameBoardController{
 	        try {
 	            FXMLLoader loader = new FXMLLoader(getClass().getResource("EndGame.fxml"));
 	            Parent root = loader.load();
-
+	            
 	            Stage popupStage = new Stage();
+	            
+	            popupStage.setResizable(false);
+	            
+	            popupStage.setOnCloseRequest(event -> {
+	                event.consume();
+	            });
+	            
 	            popupStage.initModality(Modality.APPLICATION_MODAL);
 	            popupStage.setScene(new Scene(root));
 	            popupStage.setTitle("Game Over");

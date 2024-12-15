@@ -10,13 +10,6 @@ public class BigGem extends Gem{
 		super(inCell);
 		this.setValue(10);
 		this.setImage(setImg());
-		if(inCell == 0) {
-			this.getImage().setLayoutX(25);
-			this.getImage().setLayoutY(75);
-		} else if(inCell == 6) {
-			this.getImage().setLayoutX(625);
-			this.getImage().setLayoutY(75);
-		}
 	}
 	
 	public ImageView setImg() {

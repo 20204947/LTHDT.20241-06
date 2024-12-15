@@ -29,6 +29,13 @@ public class MainController {
 	            Parent root = loader.load();
 
 	            Stage popupStage = new Stage();
+	            
+	            popupStage.setResizable(false);
+	            
+	            popupStage.setOnCloseRequest(event -> {
+	                event.consume();
+	            });
+	            
 	            popupStage.initModality(Modality.APPLICATION_MODAL);
 	            popupStage.setScene(new Scene(root));
 	            popupStage.setTitle("Start Game");
@@ -52,6 +59,13 @@ public class MainController {
 
 	          // Khởi tạo Stage cho popup
 	          Stage popupStage = new Stage();
+	          
+	          popupStage.setResizable(false);
+	          
+	          popupStage.setOnCloseRequest(event -> {
+	              event.consume();
+	          });
+	          
 	          popupStage.initModality(Modality.APPLICATION_MODAL);
 	          popupStage.setScene(new Scene(root));
 	          popupStage.setTitle("Exit Confirmation");
@@ -78,6 +92,13 @@ public class MainController {
             Parent root = loader.load();
 
             Stage popupStage = new Stage();
+            
+            popupStage.setResizable(false);
+            
+            popupStage.setOnCloseRequest(event -> {
+                event.consume();
+            });
+            
             popupStage.initModality(Modality.APPLICATION_MODAL);
             popupStage.setScene(new Scene(root));
             popupStage.setTitle("Help");

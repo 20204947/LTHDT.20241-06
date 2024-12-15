@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #e0ffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="testUI.GameBoardController">
    <children>
-      <Pane fx:id="imagePane" layoutX="150.0" layoutY="350.0" prefHeight="200.0" prefWidth="700.0" style="-fx-border-color: #000;">
+      <Pane fx:id="imagePane" layoutX="150.0" layoutY="350.0" prefHeight="200.0" prefWidth="700.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2c1c1" height="100.0" layoutX="100.0" onMouseClicked="#click1" stroke="BLACK" strokeType="INSIDE" width="100.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2c1c1" height="100.0" layoutX="200.0" onMouseClicked="#click2" stroke="BLACK" strokeType="INSIDE" width="100.0" />
@@ -25,6 +25,66 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c8c1f8" height="100.0" layoutX="100.0" layoutY="100.0" onMouseClicked="#click11" stroke="BLACK" strokeType="INSIDE" width="100.0" />
             <Arc fill="#f2c1c1" layoutX="100.0" layoutY="100.0" length="180.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
             <Arc fill="#c8c1f8" layoutX="600.0" layoutY="100.0" length="180.0" radiusX="100.0" radiusY="100.0" startAngle="-90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Text layoutX="33.0" layoutY="117.0" opacity="0.2" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+               <font>
+                  <Font name="Jokerman" size="48.0" />
+               </font>
+            </Text>
+            <Text layoutX="140.0" layoutY="71.0" onMouseClicked="#click1" opacity="0.2" strokeType="OUTSIDE" strokeWidth="0.0" text="1">
+               <font>
+                  <Font name="Jokerman" size="48.0" />
+               </font>
+            </Text>
+            <Text layoutX="237.0" layoutY="69.0" onMouseClicked="#click2" opacity="0.2" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
+               <font>
+                  <Font name="Jokerman" size="48.0" />
+               </font>
+            </Text>
+            <Text layoutX="337.0" layoutY="67.0" onMouseClicked="#click3" opacity="0.2" strokeType="OUTSIDE" strokeWidth="0.0" text="3">
+               <font>
+                  <Font name="Jokerman" size="48.0" />
+               </font>
+            </Text>
+            <Text layoutX="433.0" layoutY="68.0" onMouseClicked="#click4" opacity="0.2" strokeType="OUTSIDE" strokeWidth="0.0" text="4">
+               <font>
+                  <Font name="Jokerman" size="48.0" />
+               </font>
+            </Text>
+            <Text layoutX="537.0" layoutY="67.0" onMouseClicked="#click5" opacity="0.2" strokeType="OUTSIDE" strokeWidth="0.0" text="5">
+               <font>
+                  <Font name="Jokerman" size="48.0" />
+               </font>
+            </Text>
+            <Text layoutX="635.0" layoutY="118.0" opacity="0.2" strokeType="OUTSIDE" strokeWidth="0.0" text="6">
+               <font>
+                  <Font name="Jokerman" size="48.0" />
+               </font>
+            </Text>
+            <Text layoutX="130.0" layoutY="169.0" onMouseClicked="#click11" opacity="0.2" strokeType="OUTSIDE" strokeWidth="0.0" text="11">
+               <font>
+                  <Font name="Jokerman" size="48.0" />
+               </font>
+            </Text>
+            <Text layoutX="224.0" layoutY="167.0" onMouseClicked="#click10" opacity="0.2" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
+               <font>
+                  <Font name="Jokerman" size="48.0" />
+               </font>
+            </Text>
+            <Text layoutX="333.0" layoutY="168.0" onMouseClicked="#click9" opacity="0.2" strokeType="OUTSIDE" strokeWidth="0.0" text="9">
+               <font>
+                  <Font name="Jokerman" size="48.0" />
+               </font>
+            </Text>
+            <Text layoutX="435.0" layoutY="169.0" onMouseClicked="#click8" opacity="0.2" strokeType="OUTSIDE" strokeWidth="0.0" text="8">
+               <font>
+                  <Font name="Jokerman" size="48.0" />
+               </font>
+            </Text>
+            <Text layoutX="535.0" layoutY="169.0" onMouseClicked="#click7" opacity="0.2" strokeType="OUTSIDE" strokeWidth="0.0" text="7">
+               <font>
+                  <Font name="Jokerman" size="48.0" />
+               </font>
+            </Text>
          </children></Pane>
       <Button fx:id="cungChieuButton" layoutX="475.0" layoutY="275.0" mnemonicParsing="false" onAction="#cungChieu" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: RED;" text="&gt;" textFill="WHITE" />
       <Button fx:id="nguocChieuButton" layoutX="400.0" layoutY="275.0" mnemonicParsing="false" onAction="#nguocChieu" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: RED;" text="&lt;" textFill="WHITE" />
@@ -129,5 +189,105 @@
             </ImageView>
          </children>
       </Pane>
+      <Text fill="RED" layoutX="550.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choosing:">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="choosing1" fill="RED" layoutX="644.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="50.0">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="BLUE" layoutX="548.0" layoutY="619.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choosing:">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="choosing2" fill="BLUE" layoutX="644.0" layoutY="619.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="50.0">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@./phaohoa.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="801.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@./phaohoa.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutY="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@./phaohoa.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="801.0" layoutY="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@./phaohoa.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="cell1" fill="RED" layoutX="275.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="50.0">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="cell2" fill="RED" layoutX="375.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="50.0">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="cell3" fill="RED" layoutX="475.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="50.0">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="cell4" fill="RED" layoutX="575.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="50.0">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="cell5" fill="RED" layoutX="669.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="50.0">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="cell0" fill="RED" layoutX="110.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="40.0">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="cell11" fill="BLUE" layoutX="274.0" layoutY="571.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="50.0">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="cell10" fill="BLUE" layoutX="375.0" layoutY="571.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="50.0">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="cell9" fill="BLUE" layoutX="475.0" layoutY="571.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="50.0">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="cell8" fill="BLUE" layoutX="576.0" layoutY="571.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="50.0">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="cell7" fill="BLUE" layoutX="669.0" layoutY="571.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="50.0">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="cell6" fill="BLUE" layoutX="850.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="40.0">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
