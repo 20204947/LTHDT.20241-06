@@ -5,19 +5,40 @@ public class GameBoard {
 	private Player player1 = new Player(true);
 	private Player player2 = new Player(false);
 	
-	private Square[] listCell = new Square[12];
+	
+	//private Square[] listCell = new Square[12];
+	private Cell[] listCell = new Cell[12];
+	
+//	public GameBoard() {
+//		for(int i = 0; i<12; i++) {
+//			listCell[i] = new Square();
+//		}
+//	}
 	
 	public GameBoard() {
 		for(int i = 0; i<12; i++) {
-			listCell[i] = new Square();
+			if((i%6)==0) {
+				listCell[i] = new SemiCirle();
+			}else {
+				listCell[i] = new Square();
+			}
 		}
 	}
 
-	public Square[] getListCell() {
+//	public Square[] getListCell() {
+//		return listCell;
+//	}
+//
+//	public void setListCell(Square[] listCell) {
+//		this.listCell = listCell;
+//	}
+	
+
+	public Cell[] getListCell() {
 		return listCell;
 	}
 
-	public void setListCell(Square[] listCell) {
+	public void setListCell(Cell[] listCell) {
 		this.listCell = listCell;
 	}
 	
@@ -36,6 +57,4 @@ public class GameBoard {
 	public void setPlayer2(Player player2) {
 		this.player2 = player2;
 	}
-	
-	
 }

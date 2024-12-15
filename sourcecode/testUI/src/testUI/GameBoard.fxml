@@ -23,7 +23,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c8c1f8" height="100.0" layoutX="300.0" layoutY="100.0" onMouseClicked="#click9" stroke="BLACK" strokeType="INSIDE" width="100.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c8c1f8" height="100.0" layoutX="200.0" layoutY="100.0" onMouseClicked="#click10" stroke="BLACK" strokeType="INSIDE" width="100.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c8c1f8" height="100.0" layoutX="100.0" layoutY="100.0" onMouseClicked="#click11" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-            <Arc fill="#f2c1c1" layoutX="100.0" layoutY="100.0" length="180.0" onMouseClicked="#click" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#f2c1c1" layoutX="100.0" layoutY="100.0" length="180.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
             <Arc fill="#c8c1f8" layoutX="600.0" layoutY="100.0" length="180.0" radiusX="100.0" radiusY="100.0" startAngle="-90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
          </children></Pane>
       <Button fx:id="cungChieuButton" layoutX="475.0" layoutY="275.0" mnemonicParsing="false" onAction="#cungChieu" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: RED;" text="&gt;" textFill="WHITE" />

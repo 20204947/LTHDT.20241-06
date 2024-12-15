@@ -22,8 +22,6 @@ import javafx.util.Duration;
 
 
 public class GameBoardController{
-	
-	List<SmallGem> gemList = new ArrayList<SmallGem>();	
 	GameBoard gameBoard = new GameBoard();
 	
 	@FXML
@@ -156,10 +154,8 @@ public class GameBoardController{
 		scoreText1.setText(Integer.toString(0));
 		scoreText2.setText(Integer.toString(0));
 		ToaDo td = new ToaDo();
-		System.out.println("----------");
 		for(int i = 0; i<12; i++) {
 			for(Gem gem : gameBoard.getListCell()[i].getListGem()) {
-				System.out.println("xxx = " + i);
 				td = dichDen(i);
 				if((gameBoard.getListCell()[i] != gameBoard.getListCell()[0]) && (gameBoard.getListCell()[i] != gameBoard.getListCell()[6])) {
 					gem.getImage().setLayoutX(td.getX());
@@ -174,18 +170,6 @@ public class GameBoardController{
 				imagePane.getChildren().add(gem.getImage());
 			}
 		}
-//		for(Square cell : gameBoard.getListCell()){
-//			for(Gem gem : cell.getListGem()) {
-//				System.out.println("xxx = " + cell.getId());
-//				td = dichDen(cell.getId());
-//				if((cell != gameBoard.getListCell()[0]) && (cell != gameBoard.getListCell()[6])) {
-//					gem.getImage().setLayoutX(td.getX());
-//					gem.getImage().setLayoutY(td.getY());
-//				}
-//				imagePane.getChildren().add(gem.getImage());
-//			}
-//			System.out.println(cell.getValue());
-//		}
 	}
 
 	
@@ -200,26 +184,19 @@ public class GameBoardController{
 	}
 
 	private void moveClockwiseUntilEmpty() {
-	    SequentialTransition transition = moveGemClockwiseWithReturn();
-
-	    // Kiểm tra khi kết thúc animation
-	    transition.setOnFinished(event -> {
-	        if ((!gameBoard.getListCell()[indexCell].getListGem().isEmpty()) && (indexCell != 0) && (indexCell != 6)) {
-	            moveClockwiseUntilEmpty();
-	        }else if ((indexCell == 0) || (indexCell == 6)){
-	        	return;
-	        }else {
-	        	eatByPlayerMove1();
-	        }
-	        if(endGame()) {
-	        	System.out.println("END GAME");
-	        	showGameOverPopup();
-	        }
-	        
-	    });
-	    
-
-	    transition.play();
+	    if ((!gameBoard.getListCell()[indexCell].getListGem().isEmpty()) && (indexCell != 0) && (indexCell != 6)) {
+	    	SequentialTransition transition = moveGemClockwiseWithReturn();
+	    	transition.setOnFinished(event -> {
+		            moveClockwiseUntilEmpty();
+		    });
+	    	transition.play();
+        } else if((indexCell == 0) || (indexCell == 6)) {
+        	return;
+        } else if((gameBoard.getListCell()[indexCell].getListGem().isEmpty()) && (!gameBoard.getListCell()[indexCell+1].getListGem().isEmpty())){
+        	eatByPlayerMove1();
+        } else if(endGame()) {
+        	GameOver();
+        }
 	}
 
 	public SequentialTransition moveGemClockwiseWithReturn() {
@@ -262,25 +239,21 @@ public class GameBoardController{
 	
 	
 	private void moveCounterClockwiseUntilEmpty() {
-	    SequentialTransition transition = moveGemCounterClockwiseWithReturn();
-
 	    // Kiểm tra khi kết thúc animation
-	    transition.setOnFinished(event -> {
-	        if ((!gameBoard.getListCell()[indexCell].getListGem().isEmpty()) && (indexCell != 0) && (indexCell != 6)) {
-	            moveCounterClockwiseUntilEmpty();
-	        }else if ((indexCell == 0) || (indexCell == 6)){
-	        	return;
-	        }else {
-	        	eatByPlayerMove2();
-	        }
-	        if(endGame()) {
-	        	System.out.println("END GAME");
-	        	showGameOverPopup();
-	        }
-	    });
 	    
-
-	    transition.play();
+	    if ((!gameBoard.getListCell()[indexCell].getListGem().isEmpty()) && (indexCell != 0) && (indexCell != 6)) {
+	    	SequentialTransition transition = moveGemCounterClockwiseWithReturn();
+	    	transition.setOnFinished(event -> {
+		            moveCounterClockwiseUntilEmpty();
+		    });
+	    	transition.play();
+        } else if((indexCell == 0) || (indexCell == 6)) {
+        	return;
+        } else if((gameBoard.getListCell()[indexCell].getListGem().isEmpty()) && (!gameBoard.getListCell()[indexCell+1].getListGem().isEmpty())){
+        	eatByPlayerMove2();
+        } else if(endGame()) {
+        	GameOver();
+        }
 	}
 
 	public SequentialTransition moveGemCounterClockwiseWithReturn() {
@@ -395,6 +368,9 @@ public class GameBoardController{
 	public void eatByPlayerMove1() {
     		if(gameBoard.getListCell()[indexCell].getListGem().isEmpty()) {
     			if(gameBoard.getListCell()[(indexCell + 1)%12].getListGem().isEmpty()) {
+    				if(endGame()) {
+        				GameOver();
+    				}
     				return;
     			}
     			if(!gameBoard.getPlayer1().isTurn()) {
@@ -417,12 +393,19 @@ public class GameBoardController{
     	        	
     	        	transitionEat2.play();
             	}
+    		}else {
+    			if(endGame()) {
+        			GameOver();
+    			}
     		}
 	}
 	
 	public void eatByPlayerMove2() {
 		if(gameBoard.getListCell()[indexCell].getListGem().isEmpty()) {
 			if(gameBoard.getListCell()[(12+ indexCell - 1)%12].getListGem().isEmpty()) {
+    			if(endGame()) {
+        			GameOver();
+    			}
 				return;
 			}
 			if(!gameBoard.getPlayer1().isTurn()) {
@@ -445,23 +428,24 @@ public class GameBoardController{
 	        	
 	        	transitionEat2.play();
         	}
+		}else {
+			if(endGame()) {
+    			GameOver();
+			}
 		}
 	}
 	
 	public boolean endGame() {
 		int total1 = 0;
 		int total2 = 0;
-		System.out.println("---------------");
 		if((gameBoard.getListCell()[0].getListGem().isEmpty()) && (gameBoard.getListCell()[6].getListGem().isEmpty())) {
 			return true;
 		}
 		for(int i = 1; i<6; i++) {
 			total1 += gameBoard.getListCell()[i].getValue();
-			System.out.println(i + "= " + gameBoard.getListCell()[i].getValue());
 		}
 		for(int i = 7; i<12; i++) {
 			total2 += gameBoard.getListCell()[i].getValue();
-			System.out.println(i + "= " + gameBoard.getListCell()[i].getValue());
 		}
 		if((total1 == 0) || (total2 == 0)) {
 			return true;
@@ -470,128 +454,89 @@ public class GameBoardController{
 	}
 	
 	
-	@FXML
 	public void click() {
-		System.out.println("----------------------");
-		for (Square cell : gameBoard.getListCell()) {
-			System.out.println(cell.getValue());
+		if (gameBoard.getPlayer1().isTurn()) {
+			cungChieuButton.setVisible(true);
+			nguocChieuButton.setVisible(true);
+		}else {
+			cungChieuButton1.setVisible(true);
+			nguocChieuButton1.setVisible(true);
 		}
-		
 	}
 	
 	@FXML
 	public void click1(){
-		if (gameBoard.getPlayer1().isTurn()) {
-			cungChieuButton.setVisible(true);
-			nguocChieuButton.setVisible(true);
-		}else {
-			cungChieuButton1.setVisible(true);
-			nguocChieuButton1.setVisible(true);
+		if(gameBoard.getPlayer1().isTurn()) {
+			click();
+			indexCell = 1;
 		}
-		indexCell = 1;
 	}
 
 	@FXML
 	public void click2() {
-		if (gameBoard.getPlayer1().isTurn()) {
-			cungChieuButton.setVisible(true);
-			nguocChieuButton.setVisible(true);
-		}else {
-			cungChieuButton1.setVisible(true);
-			nguocChieuButton1.setVisible(true);
+		if(gameBoard.getPlayer1().isTurn()) {
+			click();
+			indexCell = 2;
 		}
-		indexCell = 2;
 	}
 	@FXML
 	public void click3() {
-		if (gameBoard.getPlayer1().isTurn()) {
-			cungChieuButton.setVisible(true);
-			nguocChieuButton.setVisible(true);
-		}else {
-			cungChieuButton1.setVisible(true);
-			nguocChieuButton1.setVisible(true);
+		if(gameBoard.getPlayer1().isTurn()) {
+			click();
+			indexCell = 3;
 		}
-		indexCell = 3;
 	}
 	@FXML
 	public void click4() {
-		if (gameBoard.getPlayer1().isTurn()) {
-			cungChieuButton.setVisible(true);
-			nguocChieuButton.setVisible(true);
-		}else {
-			cungChieuButton1.setVisible(true);
-			nguocChieuButton1.setVisible(true);
+		if(gameBoard.getPlayer1().isTurn()) {
+			click();
+			indexCell = 4;
 		}
-		indexCell = 4;
 	}
 	@FXML
 	public void click5() {
-		if (gameBoard.getPlayer1().isTurn()) {
-			cungChieuButton.setVisible(true);
-			nguocChieuButton.setVisible(true);
-		}else {
-			cungChieuButton1.setVisible(true);
-			nguocChieuButton1.setVisible(true);
+		if(gameBoard.getPlayer1().isTurn()) {
+			click();
+			indexCell = 5;
 		}
-		indexCell = 5;
 	}
 	@FXML
 	public void click7() {
-		if (gameBoard.getPlayer1().isTurn()) {
-			cungChieuButton.setVisible(true);
-			nguocChieuButton.setVisible(true);
-		}else {
-			cungChieuButton1.setVisible(true);
-			nguocChieuButton1.setVisible(true);
+		if(!gameBoard.getPlayer1().isTurn()) {
+			click();
+			indexCell = 7;
 		}
-		indexCell = 7;
 	}
 	@FXML
 	public void click8() {
-		if (gameBoard.getPlayer1().isTurn()) {
-			cungChieuButton.setVisible(true);
-			nguocChieuButton.setVisible(true);
-		}else {
-			cungChieuButton1.setVisible(true);
-			nguocChieuButton1.setVisible(true);
+		if(!gameBoard.getPlayer1().isTurn()) {
+			click();
+			indexCell = 8;
 		}
-		indexCell = 8;
 	}
 	@FXML
 	public void click9() {
-		if (gameBoard.getPlayer1().isTurn()) {
-			cungChieuButton.setVisible(true);
-			nguocChieuButton.setVisible(true);
-		}else {
-			cungChieuButton1.setVisible(true);
-			nguocChieuButton1.setVisible(true);
+		if(!gameBoard.getPlayer1().isTurn()) {
+			click();
+			indexCell = 9;
 		}
-		indexCell = 9;
 	}
 	@FXML
 	public void click10() {
-		if (gameBoard.getPlayer1().isTurn()) {
-			cungChieuButton.setVisible(true);
-			nguocChieuButton.setVisible(true);
-		}else {
-			cungChieuButton1.setVisible(true);
-			nguocChieuButton1.setVisible(true);
+		if(!gameBoard.getPlayer1().isTurn()) {
+			click();
+			indexCell = 10;
 		}
-		indexCell = 10;
 	}
 	@FXML
 	public void click11() {
-		if (gameBoard.getPlayer1().isTurn()) {
-			cungChieuButton.setVisible(true);
-			nguocChieuButton.setVisible(true);
-		}else {
-			cungChieuButton1.setVisible(true);
-			nguocChieuButton1.setVisible(true);
+		if(!gameBoard.getPlayer1().isTurn()) {
+			click();
+			indexCell = 11;
 		}
-		indexCell = 11;
 	}
 	
-	private void showGameOverPopup() {
+	private void GameOver() {
 	    Platform.runLater(() -> {
 	        try {
 	            FXMLLoader loader = new FXMLLoader(getClass().getResource("EndGame.fxml"));
