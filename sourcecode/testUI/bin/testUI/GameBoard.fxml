@@ -194,7 +194,7 @@
             <Font name="Jokerman" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="choosing1" fill="RED" layoutX="644.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="50.0">
+      <Text fx:id="choosing1" fill="RED" layoutX="644.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="50.0">
          <font>
             <Font name="Jokerman" size="18.0" />
          </font>
@@ -204,7 +204,7 @@
             <Font name="Jokerman" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="choosing2" fill="BLUE" layoutX="644.0" layoutY="619.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="50.0">
+      <Text fx:id="choosing2" fill="BLUE" layoutX="644.0" layoutY="619.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="50.0">
          <font>
             <Font name="Jokerman" size="18.0" />
          </font>

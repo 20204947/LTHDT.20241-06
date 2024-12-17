@@ -90,7 +90,7 @@ public class GameBoardController{
 		}
 	}
 	
-	static int count = 1;
+	static int count;
 	
 	public void changeTurn() {
 		if((count%2) == 0) {
@@ -119,7 +119,7 @@ public class GameBoardController{
 		this.gameBoard.getPlayer2().setName(name2);
 	}
 	
-	int indexCell = 0;
+	int indexCell;
 	
 	@FXML
 	private ImageView myImage;
@@ -195,6 +195,7 @@ public class GameBoardController{
 	@FXML
 	public void initialize() {
 		indexCell=0;
+		count = 1;
 		initListText();
 		setListText();
 		id1.setText(gameBoard.getPlayer1().getId());
@@ -236,8 +237,8 @@ public class GameBoardController{
 	    nguocChieuButton.setVisible(false);
 	    cungChieuButton1.setVisible(false);
 	    nguocChieuButton1.setVisible(false);
-	    choosing1.setText("0");
-	    choosing2.setText("0");
+	    choosing1.setText(null);
+	    choosing2.setText(null);
 	    changeTurn();
 	}
 
@@ -373,8 +374,8 @@ public class GameBoardController{
 	    nguocChieuButton.setVisible(false);
 	    cungChieuButton1.setVisible(false);
 	    nguocChieuButton1.setVisible(false);
-	    choosing1.setText("0");
-	    choosing2.setText("0");
+	    choosing1.setText(null);
+	    choosing2.setText(null);
 	    changeTurn();
 	}
 
