@@ -13,7 +13,7 @@ public class BigGem extends Gem{
 	}
 	
 	public ImageView setImg() {
-    	File file = new File("C:\\Users\\ADMIN\\Desktop\\testUI\\testUI\\src\\testUI\\big-gem.png");
+    	File file = new File("src/testUI/big-gem.png");
     	ImageView img = new ImageView(file.toURI().toString());
         img.setFitWidth(50);
         img.setFitHeight(50);
