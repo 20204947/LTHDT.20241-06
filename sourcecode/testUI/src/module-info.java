@@ -3,6 +3,8 @@ module testUI {
     requires javafx.fxml;
 	requires javafx.graphics;
 
-    exports testUI; // Xuất package testUI để module javafx.graphics truy cập
-    opens testUI to javafx.fxml; // Mở package testUI cho FXML
+    exports controller; // Xuất package testUI để module javafx.graphics truy cập
+    exports app; 
+    opens controller to javafx.fxml; // Mở package testUI cho FXML
+    opens app to javafx.fxml;
 }

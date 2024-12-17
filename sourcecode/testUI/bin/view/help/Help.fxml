@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #e0ffff;" stylesheets="@HelpStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HelpController">
+   <children>
+      <Text layoutX="390.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HELP DOCUMENT">
+         <font>
+            <Font name="Jokerman" size="36.0" />
+         </font>
+      </Text>
+      <VBox layoutX="100.0" layoutY="116.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #fff; -fx-border-color: #000;">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bàn Chơi:" wrappingWidth="153.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" top="15.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bàn chơi gồm 10 ô vuông chia thành 2 hàng, và 2 nửa hình tròn ở hai đầu bàn." wrappingWidth="790.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ban đầu, mỗi ô có 5 viên đá nhỏ, và mỗi nửa hình tròn có 1 viên đá lớn." wrappingWidth="790.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mỗi viên nhỏ tương đương 1 điểm, và mỗi viên lớn tương đương 5 điểm." wrappingWidth="790.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Di chuyển đá:" wrappingWidth="153.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" top="5.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hai người chơi lần lượt thay nhau di chuyển đá." wrappingWidth="790.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lấy đá ở 1 ô của mình, thực hiện rải đá, mỗi ô 1 viên đá, theo chiều kim đồng hồ hoặc chiều ngược kim đồng hồ." wrappingWidth="790.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Xét ô mà viên đá cuối cùng rơi vào:" wrappingWidth="790.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" - Nếu ô bên cạnh (theo chiều rải đá) không phải ô nửa hình tròn và còn đá trong ô đó thì lấy đá của ô đó tiếp tục thực hiện rải đá." wrappingWidth="790.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" - Thực hiện liên tục cho đến khi gặp ô rỗng (không có đá) hoặc gặp ô nửa hình tròn thì dừng lại." wrappingWidth="790.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Thu đá:" wrappingWidth="153.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sau khi kết thúc việc rải đá, xét ô chứa viên đá cuối cùng rơi vào:" wrappingWidth="790.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" - Nếu 2 ô bên cạnh rỗng thì không thu được viên đá nào." wrappingWidth="790.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" - Nếu  ô bên cạnh rỗng (không có đá) mà ô kế tiếp còn đá thì thực hiện thu đá ở ô đó (theo chiều rải đá)." wrappingWidth="790.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" - Sau khi thu đá xong, nếu ô tiếp theo rỗng thì tiếp tục thực hiện như các bước trên." wrappingWidth="790.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kết thúc:" wrappingWidth="153.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Trò chơi kết thúc khi 2 ô nửa hình tròn không còn viên đá nào hoặc 1 trong 2 người chơi hết đá trong các ô của mình." wrappingWidth="790.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Người thằng là người có số điểm cao hơn." wrappingWidth="790.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Text>
+         </children>
+      </VBox>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@./phaohoa.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="852.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@./phaohoa.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="451.0" layoutY="686.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@./phaohoa.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="quitButton" layoutX="752.0" layoutY="736.0" mnemonicParsing="false" onAction="#quit" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: RED;" text="QUIT" textFill="WHITE">
+         <font>
+            <Font name="Jokerman" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
