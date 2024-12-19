@@ -7,7 +7,6 @@ public class Player {
 	private int score;
 	
 	public Player(boolean turn) {
-		this.id = "123";
 		this.score = 0;
 		this.turn = turn;
 	}

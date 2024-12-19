@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #e0ffff;" stylesheets="@SettingStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SettingController">
+   <children>
+      <Text layoutX="221.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SETTING">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#ff00d1" layoutX="100.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VALUE OF SMALL GEM">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="quitButton" layoutX="211.0" layoutY="328.0" mnemonicParsing="false" onAction="#quit" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: RED;" text="QUIT" textFill="WHITE">
+         <font>
+            <Font name="Jokerman" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="saveButton" layoutX="211.0" layoutY="280.0" mnemonicParsing="false" onAction="#save" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: BLUE;" text="SAVE" textFill="WHITE">
+         <font>
+            <Font name="Jokerman" size="12.0" />
+         </font>
+      </Button>
+      <Text fill="#ff00d1" layoutX="100.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SPEED (ms)">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#ff00d1" layoutX="100.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VALUE OF BIG GEM">
+         <font>
+            <Font name="Jokerman" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="speed" layoutX="330.0" layoutY="99.0" prefHeight="25.0" prefWidth="70.0" />
+      <TextField fx:id="valueSmallGem" layoutX="330.0" layoutY="159.0" prefHeight="25.0" prefWidth="70.0" />
+      <TextField fx:id="valueBigGem" layoutX="330.0" layoutY="213.0" prefHeight="25.0" prefWidth="70.0" />
+   </children>
+</AnchorPane>

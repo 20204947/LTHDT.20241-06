@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.player.Player;
 
@@ -99,7 +100,7 @@ public class EndGameController {
                 event.consume();
             });
             
-            
+            matchStage.initModality(Modality.APPLICATION_MODAL);
             matchStage.setScene(new Scene(root));
             matchStage.setTitle("Tro Choi O An Quan");
             matchStage.show();
@@ -124,6 +125,7 @@ public class EndGameController {
             Parent root = loader.load();
 
             Stage matchStage = new Stage();
+            matchStage.initModality(Modality.APPLICATION_MODAL);
             matchStage.setScene(new Scene(root));
             matchStage.setTitle("Main");
             matchStage.show();

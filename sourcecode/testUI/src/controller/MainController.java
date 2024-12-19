@@ -21,6 +21,9 @@ public class MainController {
 	@FXML
 	private Button helpButton;
 	
+	@FXML
+	private Button settingButton;
+	
 	  @FXML
 	    private void start() {
 	        try {
@@ -88,6 +91,29 @@ public class MainController {
 	private void help() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/help/Help.fxml"));
+            Parent root = loader.load();
+
+            Stage popupStage = new Stage();
+            
+            popupStage.setResizable(false);
+            
+            popupStage.setOnCloseRequest(event -> {
+                event.consume();
+            });
+            
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setScene(new Scene(root));
+            popupStage.setTitle("Help");
+            popupStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
+	@FXML
+	private void setting() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/setting/Setting.fxml"));
             Parent root = loader.load();
 
             Stage popupStage = new Stage();

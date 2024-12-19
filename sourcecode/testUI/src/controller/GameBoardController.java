@@ -19,6 +19,7 @@ import javafx.util.Duration;
 import model.coordinate.Coordinate;
 import model.game_board.GameBoard;
 import model.gem.Gem;
+import model.setting.Setting;
 
 
 public class GameBoardController{
@@ -276,7 +277,7 @@ public class GameBoardController{
 	        // Tạo TranslateTransition
 	        TranslateTransition translate = new TranslateTransition();
 	        translate.setNode(gem.getImage());
-	        translate.setDuration(Duration.millis(500));
+	        translate.setDuration(Duration.millis(Setting.getSpeed()));
 
 	        double actualX = gem.getImage().getTranslateX() + gem.getImage().getLayoutX();
 	        double actualY = gem.getImage().getTranslateY() + gem.getImage().getLayoutY();
@@ -340,7 +341,7 @@ public class GameBoardController{
 	        // Tạo TranslateTransition
 	        TranslateTransition translate = new TranslateTransition();
 	        translate.setNode(gem.getImage());
-	        translate.setDuration(Duration.millis(500));
+	        translate.setDuration(Duration.millis(Setting.getSpeed()));
 
 	        double actualX = gem.getImage().getTranslateX() + gem.getImage().getLayoutX();
 	        double actualY = gem.getImage().getTranslateY() + gem.getImage().getLayoutY();
@@ -386,7 +387,7 @@ public class GameBoardController{
 	    for (Gem gem : gameBoard.getListCell()[indexCell].getListGem()) {
 	        TranslateTransition translate = new TranslateTransition();
 	        translate.setNode(gem.getImage());
-	        translate.setDuration(Duration.millis(500));
+	        translate.setDuration(Duration.millis(Setting.getSpeed()));
 
 	        double actualX = gem.getImage().getTranslateX() + gem.getImage().getLayoutX();
 	        double actualY = gem.getImage().getTranslateY() + gem.getImage().getLayoutY();
@@ -416,7 +417,7 @@ public class GameBoardController{
 	    for (Gem gem : gameBoard.getListCell()[indexCell].getListGem()) {
 	        TranslateTransition translate = new TranslateTransition();
 	        translate.setNode(gem.getImage());
-	        translate.setDuration(Duration.millis(500));
+	        translate.setDuration(Duration.millis(Setting.getSpeed()));
 
 	        double actualX = gem.getImage().getTranslateX() + gem.getImage().getLayoutX();
 	        double actualY = gem.getImage().getTranslateY() + gem.getImage().getLayoutY();
