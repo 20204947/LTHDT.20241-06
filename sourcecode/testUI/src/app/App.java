@@ -17,7 +17,6 @@ public class App extends Application {
         primaryStage.setResizable(false);
         
         primaryStage.setOnCloseRequest(event -> {
-            // Hủy sự kiện đóng cửa sổ
             event.consume();
         });
 

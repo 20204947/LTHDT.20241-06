@@ -13,19 +13,14 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class StartGameController {
+public class StartGame2Controller {
 	
 	@FXML
-	private TextField id1;
+	private TextField id;
 	
 	@FXML
-	private TextField id2;
+	private TextField name;
 	
-	@FXML
-	private TextField name1;
-	@FXML
-	private TextField name2;
-
     @FXML
     private Button startButton;
     
@@ -69,11 +64,11 @@ public class StartGameController {
             }
 
             // Load màn hình GameBoard
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/game_board/GameBoard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/game_board/GameBoard2.fxml"));
             Parent root = loader.load();
 
-            GameBoardController gameBoardController = loader.getController();
-            gameBoardController.setIdAndName(id1.getText(), name1.getText(), id2.getText(), name2.getText());
+            GameBoard2Controller gameBoard2Controller = loader.getController();
+            gameBoard2Controller.setIdAndName(id.getText(), name.getText(), "VIPPROMAX", "BOT");
 
             Stage matchStage = new Stage();
             
@@ -101,10 +96,8 @@ public class StartGameController {
 
     private boolean validateInputs() {
         try {
-            nullStringException(id1.getText(), "ID of Player 1");
-            nullStringException(name1.getText(), "Name of Player 1");
-            nullStringException(id2.getText(), "ID of Player 2");
-            nullStringException(name2.getText(), "Name of Player 2");
+            nullStringException(id.getText(), "ID of Player");
+            nullStringException(name.getText(), "Name of Player");
         } catch (NullStringException e) {
             showPopupError(e.getMessage());
             return false;

@@ -12,7 +12,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.player.Player;
 
-public class EndGameController {
+public class EndGame2Controller {
 	
 	Player player1 = new Player(true);
 	Player player2 = new Player(false);
@@ -107,12 +107,12 @@ public class EndGameController {
             currentStage.close();
             
             // Load màn hình Match
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/game_board/GameBoard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/game_board/GameBoard2.fxml"));
             Parent root = loader.load();
 
-            GameBoardController gameBoardController = loader.getController();
+            GameBoard2Controller gameBoard2Controller = loader.getController();
             
-            gameBoardController.setIdAndName(player1.getId(), player1.getName(), player2.getId(), player2.getName());
+            gameBoard2Controller.setIdAndName(player1.getId(), player1.getName(), player2.getId(), player2.getName());
             
             Stage matchStage = new Stage();
             

@@ -27,7 +27,7 @@ public class MainController {
 	  @FXML
 	    private void start() {
 	        try {
-	            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/start_game/StartGame.fxml"));
+	            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/start_game/Start.fxml"));
 	            Parent root = loader.load();
 
 	            Stage popupStage = new Stage();
@@ -40,11 +40,11 @@ public class MainController {
 	            
 	            popupStage.initModality(Modality.APPLICATION_MODAL);
 	            popupStage.setScene(new Scene(root));
-	            popupStage.setTitle("Start Game");
+	            popupStage.setTitle("Start");
 	            
-	            StartGameController startGameController = loader.getController();
+	            StartController startController = loader.getController();
 	            
-	            startGameController.setMainStage(((Stage) startButton.getScene().getWindow()));
+	            startController.setMainStage(((Stage) startButton.getScene().getWindow()));
 	            
 	            popupStage.showAndWait();
 	        } catch (IOException e) {

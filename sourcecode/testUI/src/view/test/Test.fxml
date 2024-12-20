@@ -7,12 +7,12 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #e0ffff;" stylesheets="@TestStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TestController">
    <children>
-      <Button fx:id="testButton" layoutX="211.0" layoutY="200.0" mnemonicParsing="false" onAction="#test" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: RED;" text="TEST" textFill="WHITE">
+      <Button fx:id="botButton" layoutX="211.0" layoutY="200.0" mnemonicParsing="false" onAction="#start2" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: RED;" text="Play With Bot" textFill="WHITE">
          <font>
             <Font name="Jokerman" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="settingButton" layoutX="211.0" layoutY="135.0" mnemonicParsing="false" onAction="#setting" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: BLUE;" text="SETTING" textFill="WHITE">
+      <Button fx:id="twoPlayerButton" layoutX="211.0" layoutY="135.0" mnemonicParsing="false" onAction="#start1" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: BLUE;" text="2 Player" textFill="WHITE">
          <font>
             <Font name="Jokerman" size="12.0" />
          </font>
