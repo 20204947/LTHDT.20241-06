@@ -59,6 +59,28 @@ public class EndGameController {
 		this.player2.setName(name2);
 		this.player2.setScore(score2);
 	}
+	
+	public void setPlayer(String id1, String name1, int score1, String id2, String name2, int score2, boolean surrender) {
+		this.id1.setText(id1);
+		this.name1.setText(name1);
+		this.score1.setText(Integer.toString(score1));
+		this.id2.setText(id2);
+		this.name2.setText(name2);
+		this.score2.setText(Integer.toString(score2));
+		
+		if(!surrender) {
+			this.winner.setText(name1);
+		}else {
+			this.winner.setText(name2);
+		}
+		
+		this.player1.setId(id1);
+		this.player1.setName(name1);
+		this.player1.setScore(score1);
+		this.player2.setId(id2);
+		this.player2.setName(name2);
+		this.player2.setScore(score2);
+	}
 
     @FXML
     private Button yesButton;
@@ -96,9 +118,9 @@ public class EndGameController {
             
             matchStage.setResizable(false);
             
-            matchStage.setOnCloseRequest(event -> {
-                event.consume();
-            });
+//            matchStage.setOnCloseRequest(event -> {
+//                event.consume();
+//            });
             
             matchStage.initModality(Modality.APPLICATION_MODAL);
             matchStage.setScene(new Scene(root));

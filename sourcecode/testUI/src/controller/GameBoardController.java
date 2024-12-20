@@ -99,11 +99,15 @@ public class GameBoardController{
 			gameBoard.getPlayer2().setTurn(false);
 			flag1.setVisible(true);
 			flag2.setVisible(false);
+			surrenderButton1.setVisible(true);
+			surrenderButton2.setVisible(false);
 		}else {
 			gameBoard.getPlayer1().setTurn(false);
 			gameBoard.getPlayer2().setTurn(true);
 			flag1.setVisible(false);
 			flag2.setVisible(true);
+			surrenderButton1.setVisible(false);
+			surrenderButton2.setVisible(true);
 		}
 		count++;
 	}
@@ -139,6 +143,12 @@ public class GameBoardController{
 	
 	@FXML
 	private Button nguocChieuButton;
+	
+	@FXML
+	private Button surrenderButton1;
+	
+	@FXML
+	private Button surrenderButton2;
 	
 	@FXML
 	private Text scoreText1;
@@ -209,6 +219,8 @@ public class GameBoardController{
 		nguocChieuButton1.setVisible(false);
 		flag1.setVisible(true);
 		flag2.setVisible(false);
+		surrenderButton1.setVisible(true);
+		surrenderButton2.setVisible(false);
 		scoreText1.setText(Integer.toString(0));
 		scoreText2.setText(Integer.toString(0));
 		Coordinate td = new Coordinate();
@@ -229,18 +241,21 @@ public class GameBoardController{
 			}
 		}
 	}
-
 	
-	@FXML
-	public void cungChieu() {
-	    moveClockwiseUntilEmpty();
+	public void setNewTurn() {
 	    cungChieuButton.setVisible(false);
 	    nguocChieuButton.setVisible(false);
 	    cungChieuButton1.setVisible(false);
 	    nguocChieuButton1.setVisible(false);
 	    choosing1.setText(null);
 	    choosing2.setText(null);
-	    changeTurn();
+	}
+
+	
+	@FXML
+	public void cungChieu() {
+	    moveClockwiseUntilEmpty();
+	    setNewTurn();
 	}
 
 	private void moveClockwiseUntilEmpty() {
@@ -254,6 +269,8 @@ public class GameBoardController{
         	setListText();
         	if(endGame()) {
             	GameOver();
+            }else {
+            	changeTurn();
             }
         	return;
         } else if((gameBoard.getListCell()[indexCell].getListGem().isEmpty()) && (!gameBoard.getListCell()[(indexCell+1)%12].getListGem().isEmpty())){
@@ -262,6 +279,8 @@ public class GameBoardController{
         	setListText();
         	if(endGame()) {
             	GameOver();
+            }else {
+            	changeTurn();
             }
         }
 	}
@@ -318,6 +337,8 @@ public class GameBoardController{
         	setListText();
         	if(endGame()) {
             	GameOver();
+            }else {
+            	changeTurn();
             }
         	return;
         } else if((gameBoard.getListCell()[indexCell].getListGem().isEmpty()) && (!gameBoard.getListCell()[(12+indexCell-1)%12].getListGem().isEmpty())){
@@ -326,6 +347,8 @@ public class GameBoardController{
         	setListText();
         	if(endGame()) {
             	GameOver();
+            }else {
+            	changeTurn();
             }
         }
 	}
@@ -371,13 +394,7 @@ public class GameBoardController{
 	@FXML
 	public void nguocChieu() {
 	    moveCounterClockwiseUntilEmpty();
-	    cungChieuButton.setVisible(false);
-	    nguocChieuButton.setVisible(false);
-	    cungChieuButton1.setVisible(false);
-	    nguocChieuButton1.setVisible(false);
-	    choosing1.setText(null);
-	    choosing2.setText(null);
-	    changeTurn();
+	    setNewTurn();
 	}
 
 	
@@ -447,10 +464,12 @@ public class GameBoardController{
     				setListText();
     				if(endGame()) {
         				GameOver();
+    				}else {
+    					changeTurn();
     				}
     				return;
     			}
-    			if(!gameBoard.getPlayer1().isTurn()) {
+    			if(gameBoard.getPlayer1().isTurn()) {
             		indexCell = (indexCell + 1)%12;
     	        	SequentialTransition transitionEat1 = eat1();
     	        	transitionEat1.setOnFinished(event -> {
@@ -474,6 +493,8 @@ public class GameBoardController{
     			setListText();
     			if(endGame()) {
         			GameOver();
+    			}else {
+    				changeTurn();
     			}
     		}
 	}
@@ -484,10 +505,12 @@ public class GameBoardController{
 				setListText();
     			if(endGame()) {
         			GameOver();
+    			}else {
+    				changeTurn();
     			}
 				return;
 			}
-			if(!gameBoard.getPlayer1().isTurn()) {
+			if(gameBoard.getPlayer1().isTurn()) {
         		indexCell = (12+ indexCell - 1)%12;
 	        	SequentialTransition transitionEat1 = eat1();
 	        	transitionEat1.setOnFinished(event -> {
@@ -511,6 +534,8 @@ public class GameBoardController{
 			setListText();
 			if(endGame()) {
     			GameOver();
+			}else {
+				changeTurn();
 			}
 		}
 	}
@@ -656,4 +681,37 @@ public class GameBoardController{
 	        }
 	    });
 	}
+	
+	
+	@FXML
+	public void surrender() {
+	    Platform.runLater(() -> {
+	        try {
+	            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/surrender/Surrender.fxml"));
+	            Parent root = loader.load();
+
+	            Stage popupStage = new Stage();
+	            
+	            popupStage.setResizable(false);
+	            
+	            popupStage.setOnCloseRequest(event -> {
+	                event.consume();
+	            });
+	            
+	            SurrenderController endGameController = loader.getController();
+	            
+	            endGameController.setPlayer(id1.getText(), name1.getText(), Integer.parseInt(scoreText1.getText()), id2.getText(), name2.getText(), Integer.parseInt(scoreText2.getText()), gameBoard.getPlayer1().isTurn());
+	            
+	            endGameController.setGameBoardStage(((Stage) imagePane.getScene().getWindow()));
+	            
+	            popupStage.initModality(Modality.APPLICATION_MODAL);
+	            popupStage.setScene(new Scene(root));
+	            popupStage.setTitle("Surrender");
+	            popupStage.showAndWait();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    });
+	}
+	
 }

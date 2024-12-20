@@ -3,7 +3,7 @@ package model.setting;
 public class Setting {
 	private static int speed = 500;
 	private static int valueOfSmallGem = 1;
-	private static int valueOfBigGem = 10;
+	private static int valueOfBigGem = 5;
 	
 	public static int getSpeed() {
 		return speed;

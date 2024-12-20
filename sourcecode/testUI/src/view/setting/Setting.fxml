@@ -7,32 +7,32 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #e0ffff;" stylesheets="@SettingStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SettingController">
    <children>
-      <Text layoutX="221.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SETTING">
+      <Text fill="#00cc00" layoutX="181.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SETTING">
+         <font>
+            <Font name="Jokerman" size="36.0" />
+         </font>
+      </Text>
+      <Text fill="#ff9900" layoutX="100.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Value of Small Gem">
          <font>
             <Font name="Jokerman" size="18.0" />
          </font>
       </Text>
-      <Text fill="#ff00d1" layoutX="100.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VALUE OF SMALL GEM">
-         <font>
-            <Font name="Jokerman" size="18.0" />
-         </font>
-      </Text>
-      <Button fx:id="quitButton" layoutX="211.0" layoutY="328.0" mnemonicParsing="false" onAction="#quit" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: RED;" text="QUIT" textFill="WHITE">
+      <Button fx:id="quitButton" layoutX="211.0" layoutY="328.0" mnemonicParsing="false" onAction="#quit" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #FF6666;" text="QUIT">
          <font>
             <Font name="Jokerman" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="saveButton" layoutX="211.0" layoutY="280.0" mnemonicParsing="false" onAction="#save" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: BLUE;" text="SAVE" textFill="WHITE">
+      <Button fx:id="saveButton" layoutX="211.0" layoutY="280.0" mnemonicParsing="false" onAction="#save" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #33CCFF;" text="SAVE">
          <font>
             <Font name="Jokerman" size="12.0" />
          </font>
       </Button>
-      <Text fill="#ff00d1" layoutX="100.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SPEED (ms)">
+      <Text fill="#ff9900" layoutX="100.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Speed (100 - 2000 ms)">
          <font>
             <Font name="Jokerman" size="18.0" />
          </font>
       </Text>
-      <Text fill="#ff00d1" layoutX="100.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VALUE OF BIG GEM">
+      <Text fill="#ff9900" layoutX="100.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Value of Big Gem">
          <font>
             <Font name="Jokerman" size="18.0" />
          </font>

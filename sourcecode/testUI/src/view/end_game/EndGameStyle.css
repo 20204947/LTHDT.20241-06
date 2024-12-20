@@ -1,3 +1,7 @@
+.button {
+	-fx-background-color: #add8e6;
+}
+
 .button:hover {
     -fx-text-fill: white;  /* Màu chữ khi hover */
     -fx-cursor: hand;  /* Thay đổi con trỏ khi hover */

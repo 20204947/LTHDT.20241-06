@@ -9,9 +9,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: #e0ffff;" stylesheets="@ExitStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ExitController">
+<AnchorPane prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: #e0ffff;" stylesheets="@SurrenderStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SurrenderController">
    <children>
-      <Text fill="#ff9900" layoutX="1.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you want to exit ?" textAlignment="CENTER" wrappingWidth="300.0">
+      <Text fill="#ff9900" layoutX="1.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you want to surrender?" textAlignment="CENTER" wrappingWidth="300.0">
          <font>
             <Font name="Jokerman" size="18.0" />
          </font>
