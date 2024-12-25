@@ -54,7 +54,7 @@
 
 .arc1, .arc2{
 	-fx-opacity: 0.3;
-	-fx-stroke-width: 1.1px; 
+	-fx-stroke-width: 1px;
 }
 
 .setting-text{

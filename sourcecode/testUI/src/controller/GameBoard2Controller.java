@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.animation.PauseTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
@@ -284,40 +287,80 @@ public class GameBoard2Controller{
         	checkEndGame();
         }
 	}
-
 	private SequentialTransition moveGemClockwiseWithReturn() {
-	    SequentialTransition sequentialTransition = new SequentialTransition();
-	    int j = 1;
+		SequentialTransition sequentialTransition = new SequentialTransition();
+		int j = 1;
 
-	    for (Gem gem : gameBoard.getListCell()[indexCell].getListGem()) {
-	        gameBoard.getListCell()[(indexCell + j) % 12].add(gem);
+		// Tạo bản sao của danh sách để tránh ConcurrentModificationException
+		List<Gem> gemsToMove = new ArrayList<>(gameBoard.getListCell()[indexCell].getListGem());
 
-	        TranslateTransition translate = new TranslateTransition();
-	        translate.setNode(gem.getImage());
-	        translate.setDuration(Duration.millis(Setting.getSpeed()));
+		for (Gem gem : gemsToMove) {
+			gameBoard.getListCell()[(indexCell + j) % 12].add(gem);
 
-	        double actualX = gem.getImage().getTranslateX() + gem.getImage().getLayoutX();
-	        double actualY = gem.getImage().getTranslateY() + gem.getImage().getLayoutY();
+			TranslateTransition translate = new TranslateTransition();
+			translate.setNode(gem.getImage());
+			translate.setDuration(Duration.millis(Setting.getSpeed()));
 
-	        Coordinate td = dichDen((indexCell + j) % 12);
+			double actualX = gem.getImage().getTranslateX() + gem.getImage().getLayoutX();
+			double actualY = gem.getImage().getTranslateY() + gem.getImage().getLayoutY();
 
-	        translate.setByX(td.getX() - actualX);
-	        translate.setByY(td.getY() - actualY);
+			Coordinate td = dichDen((indexCell + j) % 12);
 
-	        sequentialTransition.getChildren().add(translate);
+			translate.setByX(td.getX() - actualX);
+			translate.setByY(td.getY() - actualY);
 
-	        PauseTransition pause = new PauseTransition(Duration.millis(50));
-	        sequentialTransition.getChildren().add(pause);
-	        j++;
-	    }
+			sequentialTransition.getChildren().add(translate);
 
-	    gameBoard.getListCell()[indexCell].getListGem().clear();
+			PauseTransition pause = new PauseTransition(Duration.millis(50));
+			sequentialTransition.getChildren().add(pause);
+			j++;
+		}
 
-	    indexCell = (indexCell + j) % 12;
+		// Xóa danh sách gốc sau khi hoàn thành việc di chuyển
+		gameBoard.getListCell()[indexCell].getListGem().clear();
 
-	    return sequentialTransition;
+		indexCell = (indexCell + j) % 12;
+
+		return sequentialTransition;
 	}
-	
+
+	private SequentialTransition moveGemCounterClockwiseWithReturn() {
+		SequentialTransition sequentialTransition = new SequentialTransition();
+		int j = 1;
+
+		// Tạo bản sao của danh sách để tránh ConcurrentModificationException
+		List<Gem> gemsToMove = new ArrayList<>(gameBoard.getListCell()[indexCell].getListGem());
+
+		for (Gem gem : gemsToMove) {
+			gameBoard.getListCell()[(12 + indexCell - j) % 12].add(gem);
+
+			TranslateTransition translate = new TranslateTransition();
+			translate.setNode(gem.getImage());
+			translate.setDuration(Duration.millis(Setting.getSpeed()));
+
+			double actualX = gem.getImage().getTranslateX() + gem.getImage().getLayoutX();
+			double actualY = gem.getImage().getTranslateY() + gem.getImage().getLayoutY();
+
+			Coordinate td = dichDen((12 + indexCell - j) % 12);
+
+			translate.setByX(td.getX() - actualX);
+			translate.setByY(td.getY() - actualY);
+
+			sequentialTransition.getChildren().add(translate);
+
+			PauseTransition pause = new PauseTransition(Duration.millis(50));
+			sequentialTransition.getChildren().add(pause);
+			j++;
+		}
+
+		// Xóa danh sách gốc sau khi hoàn thành việc di chuyển
+		gameBoard.getListCell()[indexCell].getListGem().clear();
+
+		indexCell = (12 + indexCell - j) % 12;
+
+		return sequentialTransition;
+	}
+
 	private void moveCounterClockwiseUntilEmpty() {
 	    
 	    if ((!gameBoard.getListCell()[indexCell].getListGem().isEmpty()) && (indexCell != 0) && (indexCell != 6)) {
@@ -334,38 +377,6 @@ public class GameBoard2Controller{
         } else {
         	checkEndGame();
         }
-	}
-	private SequentialTransition moveGemCounterClockwiseWithReturn() {
-	    SequentialTransition sequentialTransition = new SequentialTransition();
-	    int j = 1;
-
-	    for (Gem gem : gameBoard.getListCell()[indexCell].getListGem()) {
-	        gameBoard.getListCell()[(12 + indexCell - j) % 12].add(gem);
-
-	        TranslateTransition translate = new TranslateTransition();
-	        translate.setNode(gem.getImage());
-	        translate.setDuration(Duration.millis(Setting.getSpeed()));
-
-	        double actualX = gem.getImage().getTranslateX() + gem.getImage().getLayoutX();
-	        double actualY = gem.getImage().getTranslateY() + gem.getImage().getLayoutY();
-
-	        Coordinate td = dichDen((12 + indexCell - j) % 12);
-
-	        translate.setByX(td.getX() - actualX);
-	        translate.setByY(td.getY() - actualY);
-
-	        sequentialTransition.getChildren().add(translate);
-
-	        PauseTransition pause = new PauseTransition(Duration.millis(50));
-	        sequentialTransition.getChildren().add(pause);
-	        j++;
-	    }
-
-	    gameBoard.getListCell()[indexCell].getListGem().clear();
-
-	    indexCell = (12 + indexCell - j) % 12;
-
-	    return sequentialTransition;
 	}
 	
 	@FXML
@@ -605,7 +616,7 @@ public class GameBoard2Controller{
 	                event.consume();
 	            });
 	            
-	            SurrenderController endGameController = loader.getController();  
+	            SurrenderController endGameController = loader.getController();
 	            endGameController.setPlayer(id1.getText(), name1.getText(), Integer.parseInt(scoreText1.getText()), id2.getText(), name2.getText(), Integer.parseInt(scoreText2.getText()), gameBoard.getPlayer1().isTurn());
 	            endGameController.setGameBoardStage(((Stage) imagePane.getScene().getWindow()));
 	            
