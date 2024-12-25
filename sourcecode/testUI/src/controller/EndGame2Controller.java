@@ -98,7 +98,6 @@ public class EndGame2Controller {
     @FXML
     private void yes() {
         try {
-            
             if (matchStage != null) {
                 matchStage.close(); 
             }
@@ -148,9 +147,6 @@ public class EndGame2Controller {
             matchStage.setScene(new Scene(root));
             matchStage.setTitle("Main");
             matchStage.show();
-            
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
