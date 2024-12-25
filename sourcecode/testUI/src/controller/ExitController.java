@@ -14,13 +14,12 @@ public class ExitController {
 
     private Stage mainStage;
 
-    public void setMainStage(Stage mainStage) {
+    protected void setMainStage(Stage mainStage) {
         this.mainStage = mainStage;
     }
 
     @FXML
     private void yes() {
-    	// Đóng màn hình chính
         if (mainStage != null) {
             mainStage.close(); 
         }
@@ -30,7 +29,6 @@ public class ExitController {
 
     @FXML
     private void no() {
-        // Chỉ đóng popup
         Stage currentStage = (Stage) noButton.getScene().getWindow();
         currentStage.close();
     }

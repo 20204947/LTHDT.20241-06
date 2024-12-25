@@ -9,20 +9,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: #e0ffff;" stylesheets="@ExitStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ExitController">
+<AnchorPane prefHeight="150.0" prefWidth="300.0" styleClass="anchor-pane-exit" stylesheets="@ExitStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ExitController">
    <children>
-      <Text fill="#ff9900" layoutX="1.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you want to exit ?" textAlignment="CENTER" wrappingWidth="300.0">
+      <Text layoutX="1.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you want to exit ?" textAlignment="CENTER" wrappingWidth="300.0" styleClass="text-in-scene">
          <font>
-            <Font name="Jokerman" size="18.0" />
+            <Font name="MV Boli" size="18.0" />
          </font>
       </Text>
-      <Button fx:id="noButton" layoutX="60.0" layoutY="85.0" mnemonicParsing="false" onAction="#no" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #FF6666;" text="NO">
+      <Button fx:id="noButton" layoutX="60.0" layoutY="85.0" mnemonicParsing="false" onAction="#no" prefHeight="30.0" prefWidth="70.0" text="NO" styleClass="no-button">
          <font>
-            <Font name="Jokerman" size="12.0" />
+            <Font name="MV Boli" size="12.0" />
          </font></Button>
-      <Button fx:id="yesButton" layoutX="172.0" layoutY="85.0" mnemonicParsing="false" onAction="#yes" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #33CCFF;" text="YES">
+      <Button fx:id="yesButton" layoutX="172.0" layoutY="85.0" mnemonicParsing="false" onAction="#yes" prefHeight="30.0" prefWidth="70.0" text="YES" styleClass="yes-button">
          <font>
-            <Font name="Jokerman" size="12.0" />
+            <Font name="MV Boli" size="12.0" />
          </font></Button>
    </children>
 </AnchorPane>

@@ -15,14 +15,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #e0ffff;" stylesheets="@HelpStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HelpController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" styleClass="anchor-pane-help" stylesheets="@HelpStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HelpController">
    <children>
-      <Text fill="#00cc00" layoutX="340.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HELP DOCUMENT">
+      <Text fill="#00cc00" layoutX="340.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HELP DOCUMENT" styleClass="help-text">
          <font>
-            <Font name="Jokerman" size="36.0" />
+            <Font name="MV Boli" size="36.0" />
          </font>
       </Text>
-      <VBox layoutX="100.0" layoutY="86.0" prefHeight="640.0" prefWidth="800.0" style="-fx-background-color: #fff; -fx-border-color: #000;">
+      <VBox layoutX="100.0" layoutY="86.0" prefHeight="640.0" prefWidth="800.0" styleClass="box-help">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bàn Chơi:" wrappingWidth="153.0">
                <font>
@@ -178,24 +178,9 @@
             </Text>
          </children>
       </VBox>
-      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../image/phaohoa.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="867.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../image/phaohoa.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="451.0" layoutY="686.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../image/phaohoa.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="quitButton" layoutX="752.0" layoutY="736.0" mnemonicParsing="false" onAction="#quit" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #FF6666;" text="QUIT">
+      <Button fx:id="quitButton" layoutX="752.0" layoutY="736.0" mnemonicParsing="false" onAction="#quit" prefHeight="30.0" prefWidth="100.0" styleClass="quit-button" text="QUIT">
          <font>
-            <Font name="Jokerman" size="12.0" />
+            <Font name="MV Boli" size="12.0" />
          </font>
       </Button>
    </children>

@@ -2,8 +2,9 @@ package controller;
 
 import java.io.IOException;
 
-import exception.NegativeNumberException;
+import exception.LongNameException;
 import exception.NullStringException;
+import exception.SameIdException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,17 +33,16 @@ public class StartGameController {
     @FXML
     private Button quitButton;
 
-    private Stage mainStage;      // Tham chiếu đến Stage của màn hình Main
+    private Stage mainStage;    
     
 	@FXML
     private Stage startStage;
 
-    // Set tham chiếu đến Stage Main và Stage StartGame
-    public void setMainStage(Stage mainStage) {
+	protected void setMainStage(Stage mainStage) {
         this.mainStage = mainStage;
     }
     
-    public void setStartStage(Stage startStage) {
+	protected void setStartStage(Stage startStage) {
         this.startStage = startStage;
     }
 
@@ -50,11 +50,9 @@ public class StartGameController {
     private void startGame() {
         try {
 
-            // Kiểm tra dữ liệu đầu vào trước khi tải GameBoard
-            if (!validateInputs()) {
+            if (!validateInputs() || !checkSameId() || !checkLongName()) {
                 return;
             }else {
-                // Đóng mainStage nếu đã mở
               if (mainStage != null) {
                   mainStage.close();
               }
@@ -63,12 +61,10 @@ public class StartGameController {
                   startStage.close();
               }
 
-              // Đóng cửa sổ hiện tại
               Stage currentStage = (Stage) startButton.getScene().getWindow();
               currentStage.close();
             }
 
-            // Load màn hình GameBoard
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/game_board/GameBoard.fxml"));
             Parent root = loader.load();
 
@@ -117,8 +113,41 @@ public class StartGameController {
             throw new NullStringException(fieldName + " cannot be empty !!!");
         }
     }
+    
+    private boolean checkSameId() {
+        try {
+        	sameIdException(id1.getText(), id2.getText());
+        } catch (SameIdException e) {
+            showPopupError(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+    
+    private void sameIdException(String id1, String id2) throws SameIdException {
+        if (id1.equals(id2)) {
+            throw new SameIdException("ID of two player must be different !!!");
+        }
+    }
+    
+    private boolean checkLongName() {
+        try {
+        	longNameException(name1.getText(), "Name of Player 1");
+        	longNameException(name2.getText(), "Name of Player 2");
+        } catch (LongNameException e) {
+            showPopupError(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+    
+    private void longNameException(String name, String field) throws LongNameException {
+        if (name.length()>10) {
+            throw new LongNameException(field + " so long !!!");
+        }
+    }
 
-    public void showPopupError(String errorMessage) {
+    private void showPopupError(String errorMessage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/popup/ErrorEnterTextField.fxml"));
             Parent root = loader.load();

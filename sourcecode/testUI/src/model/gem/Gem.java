@@ -16,12 +16,11 @@ public abstract class Gem {
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	public int getValue() {
 		return value;
 	}
+	
 	public void setValue(int value) {
 		this.value = value;
 	}
@@ -29,6 +28,7 @@ public abstract class Gem {
 	public ImageView getImage() {
 		return image;
 	}
+	
 	public void setImage(ImageView image) {
 		this.image = image;
 	}	

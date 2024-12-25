@@ -2,7 +2,7 @@ package controller;
 
 import java.io.IOException;
 
-import exception.NegativeNumberException;
+import exception.LongNameException;
 import exception.NullStringException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,29 +27,25 @@ public class StartGame2Controller {
     @FXML
     private Button quitButton;
 
-    private Stage mainStage;      // Tham chiếu đến Stage của màn hình Main
+    private Stage mainStage;  
     
 	@FXML
     private Stage startStage;
 
-    // Set tham chiếu đến Stage Main và Stage StartGame
-    public void setMainStage(Stage mainStage) {
+    protected void setMainStage(Stage mainStage) {
         this.mainStage = mainStage;
     }
     
-    public void setStartStage(Stage startStage) {
+    protected void setStartStage(Stage startStage) {
         this.startStage = startStage;
     }
 
     @FXML
     private void startGame() {
         try {
-
-            // Kiểm tra dữ liệu đầu vào trước khi tải GameBoard
-            if (!validateInputs()) {
+            if (!validateInputs() || !checkLongName()) {
                 return;
             }else {
-                // Đóng mainStage nếu đã mở
               if (mainStage != null) {
                   mainStage.close();
               }
@@ -58,17 +54,15 @@ public class StartGame2Controller {
                   startStage.close();
               }
 
-              // Đóng cửa sổ hiện tại
               Stage currentStage = (Stage) startButton.getScene().getWindow();
               currentStage.close();
             }
 
-            // Load màn hình GameBoard
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/game_board/GameBoard2.fxml"));
             Parent root = loader.load();
 
             GameBoard2Controller gameBoard2Controller = loader.getController();
-            gameBoard2Controller.setIdAndName(id.getText(), name.getText(), "VIPPROMAX", "BOT");
+            gameBoard2Controller.setIdAndName(id.getText(), name.getText());
 
             Stage matchStage = new Stage();
             
@@ -108,6 +102,22 @@ public class StartGame2Controller {
     private void nullStringException(String text, String fieldName) throws NullStringException {
         if (text == null || text.trim().isEmpty()) {
             throw new NullStringException(fieldName + " cannot be empty !!!");
+        }
+    }
+    
+    private boolean checkLongName() {
+        try {
+        	longNameException(name.getText(), "Name of Player");
+        } catch (LongNameException e) {
+            showPopupError(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+    
+    private void longNameException(String name, String field) throws LongNameException {
+        if (name.length()>10) {
+            throw new LongNameException(field + " so long !!!");
         }
     }
 

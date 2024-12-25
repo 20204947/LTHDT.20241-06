@@ -39,10 +39,6 @@ public abstract class Cell {
 		return id;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
-	}
-	
 	public List<Gem> getListGem() {
 		return listGem;
 	}

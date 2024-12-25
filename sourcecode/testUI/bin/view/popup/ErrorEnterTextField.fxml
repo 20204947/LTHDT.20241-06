@@ -9,15 +9,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: #e0ffff;" stylesheets="@ErrorEnterTextFieldStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ErrorEnterTextFieldController">
+<AnchorPane prefHeight="160.0" prefWidth="300.0" styleClass="anchor-pane-error" stylesheets="@ErrorEnterTextFieldStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ErrorEnterTextFieldController">
    <children>
-      <Button fx:id="okButton" layoutX="115.0" layoutY="112.0" mnemonicParsing="false" onAction="#ok" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #33CCFF;" text="OK">
+      <Button fx:id="okButton" layoutX="115.0" layoutY="112.0" mnemonicParsing="false" onAction="#ok" prefHeight="30.0" prefWidth="70.0" styleClass="ok-button" text="OK">
          <font>
-            <Font name="Jokerman" size="12.0" />
+            <Font name="MV Boli" size="12.0" />
          </font></Button>
-      <Text fx:id="error" fill="#ff6666" layoutX="6.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="error" textAlignment="CENTER" wrappingWidth="290.0">
+      <Text fx:id="error" layoutX="6.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-in-scene" text="error" textAlignment="CENTER" wrappingWidth="290.0">
          <font>
-            <Font name="Jokerman" size="18.0" />
+            <Font name="MV Boli" size="18.0" />
          </font>
       </Text>
    </children>
