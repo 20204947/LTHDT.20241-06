@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -295,45 +297,6 @@ public class GameBoard2Controller{
             }
         }
 	}
-
-	public SequentialTransition moveGemClockwiseWithReturn() {
-	    SequentialTransition sequentialTransition = new SequentialTransition();
-	    int j = 1;
-
-	    for (Gem gem : gameBoard.getListCell()[indexCell].getListGem()) {
-	        // Di chuyển viên ngọc sang ô tiếp theo
-	        gameBoard.getListCell()[(indexCell + j) % 12].add(gem);
-
-	        // Tạo TranslateTransition
-	        TranslateTransition translate = new TranslateTransition();
-	        translate.setNode(gem.getImage());
-	        translate.setDuration(Duration.millis(Setting.getSpeed()));
-
-	        double actualX = gem.getImage().getTranslateX() + gem.getImage().getLayoutX();
-	        double actualY = gem.getImage().getTranslateY() + gem.getImage().getLayoutY();
-
-	        Coordinate td = dichDen((indexCell + j) % 12);
-
-	        translate.setByX(td.getX() - actualX);
-	        translate.setByY(td.getY() - actualY);
-
-	        sequentialTransition.getChildren().add(translate);
-
-	        // Thêm thời gian tạm dừng
-	        PauseTransition pause = new PauseTransition(Duration.millis(50));
-	        sequentialTransition.getChildren().add(pause);
-	        j++;
-	    }
-
-	    // Xóa danh sách ngọc trong ô hiện tại
-	    gameBoard.getListCell()[indexCell].getListGem().clear();
-
-	    // Cập nhật ô hiện tại
-	    indexCell = (indexCell + j) % 12;
-
-	    return sequentialTransition;
-	}
-	
 	
 	private void moveCounterClockwiseUntilEmpty() {
 	    // Kiểm tra khi kết thúc animation
@@ -368,6 +331,47 @@ public class GameBoard2Controller{
             	}
             }
         }
+	}
+
+	public SequentialTransition moveGemClockwiseWithReturn() {
+		SequentialTransition sequentialTransition = new SequentialTransition();
+		int j = 1;
+
+		// Tạo danh sách tạm thời để tránh lỗi ConcurrentModificationException
+		List<Gem> tempList = new ArrayList<>(gameBoard.getListCell()[indexCell].getListGem());
+
+		for (Gem gem : tempList) {
+			// Di chuyển viên ngọc sang ô tiếp theo
+			gameBoard.getListCell()[(indexCell + j) % 12].add(gem);
+
+			// Tạo TranslateTransition
+			TranslateTransition translate = new TranslateTransition();
+			translate.setNode(gem.getImage());
+			translate.setDuration(Duration.millis(Setting.getSpeed()));
+
+			double actualX = gem.getImage().getTranslateX() + gem.getImage().getLayoutX();
+			double actualY = gem.getImage().getTranslateY() + gem.getImage().getLayoutY();
+
+			Coordinate td = dichDen((indexCell + j) % 12);
+
+			translate.setByX(td.getX() - actualX);
+			translate.setByY(td.getY() - actualY);
+
+			sequentialTransition.getChildren().add(translate);
+
+			// Thêm thời gian tạm dừng
+			PauseTransition pause = new PauseTransition(Duration.millis(50));
+			sequentialTransition.getChildren().add(pause);
+			j++;
+		}
+
+		// Xóa danh sách ngọc trong ô hiện tại
+		gameBoard.getListCell()[indexCell].getListGem().clear();
+
+		// Cập nhật ô hiện tại
+		indexCell = (indexCell + j) % 12;
+
+		return sequentialTransition;
 	}
 
 	public SequentialTransition moveGemCounterClockwiseWithReturn() {

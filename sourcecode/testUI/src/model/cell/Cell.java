@@ -6,7 +6,7 @@ import model.gem.Gem;
 
 public abstract class Cell {
 	private int id;
-	private List<Gem> listGem = new ArrayList<Gem>();
+	private final List<Gem> listGem = new ArrayList<Gem>();
 	private int value;
 	static int count = 0;
 	
@@ -21,9 +21,7 @@ public abstract class Cell {
 		}
 	
 	public void remove(Gem gem) {
-		if(listGem.contains(gem)) {
-			listGem.remove(gem);
-		}
+        listGem.remove(gem);
 	}
 	
 	
