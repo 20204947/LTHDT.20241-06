@@ -5,26 +5,26 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #e0ffff;" stylesheets="@StartGameStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StartController">
+<AnchorPane prefHeight="400.0" prefWidth="500.0" styleClass="anchor-pane-start" stylesheets="@StartGameStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StartController">
    <children>
-      <Button fx:id="botButton" layoutX="211.0" layoutY="200.0" mnemonicParsing="false" onAction="#start2" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #33CCFF;" text="Play With Bot">
+      <Button fx:id="botButton" layoutX="196.0" layoutY="194.0" mnemonicParsing="false" onAction="#start2" prefHeight="35.0" prefWidth="130.0" styleClass="play-with-bot-button" text="PLAY WITH BOT">
          <font>
-            <Font name="Jokerman" size="12.0" />
+            <Font name="MV Boli" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="twoPlayerButton" layoutX="211.0" layoutY="135.0" mnemonicParsing="false" onAction="#start1" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #33CCFF;" text="2 Player">
+      <Button fx:id="twoPlayerButton" layoutX="196.0" layoutY="120.0" mnemonicParsing="false" onAction="#start1" prefHeight="35.0" prefWidth="130.0" styleClass="play-two-player" text="2 PLAYER">
          <font>
-            <Font name="Jokerman" size="12.0" />
+            <Font name="MV Boli" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="quitButton" layoutX="211.0" layoutY="296.0" mnemonicParsing="false" onAction="#quit" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #FF6666;" text="Quit">
+      <Button fx:id="quitButton" layoutX="211.0" layoutY="287.0" mnemonicParsing="false" onAction="#quit" prefHeight="30.0" prefWidth="100.0" styleClass="quit-button" text="QUIT">
          <font>
-            <Font name="Jokerman" size="12.0" />
+            <Font name="MV Boli" size="12.0" />
          </font>
       </Button>
-      <Text fill="#00cc00" layoutX="190.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="START">
+      <Text layoutX="202.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="START" styleClass="start-text">
          <font>
-            <Font name="Jokerman" size="36.0" />
+            <Font name="MV Boli" size="36.0" />
          </font>
       </Text>
    </children>

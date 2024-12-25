@@ -10,21 +10,21 @@
    <children>
       <Button fx:id="startButton" layoutX="100.0" layoutY="364.0" mnemonicParsing="false" onAction="#start" prefHeight="40.0" prefWidth="150.0" text="START">
          <font>
-            <Font name="Jokerman" size="18.0" />
+            <Font name="MV Boli" size="18.0" />
          </font></Button>
       <Button fx:id="helpButton" layoutX="100.0" layoutY="441.0" mnemonicParsing="false" onAction="#help" prefHeight="40.0" prefWidth="150.0" text="HELP">
          <font>
-            <Font name="Jokerman" size="18.0" />
+            <Font name="MV Boli" size="18.0" />
          </font>
       </Button>
       <Button fx:id="exitButton" layoutX="100.0" layoutY="593.0" mnemonicParsing="false" onAction="#exit" prefHeight="40.0" prefWidth="150.0" text="EXIT">
          <font>
-            <Font name="Jokerman" size="18.0" />
+            <Font name="MV Boli" size="18.0" />
          </font>
       </Button>
       <Button fx:id="settingButton" layoutX="100.0" layoutY="516.0" mnemonicParsing="false" onAction="#setting" prefHeight="40.0" prefWidth="150.0" text="SETTING">
          <font>
-            <Font name="Jokerman" size="18.0" />
+            <Font name="MV Boli" size="18.0" />
          </font>
       </Button>
    </children>
