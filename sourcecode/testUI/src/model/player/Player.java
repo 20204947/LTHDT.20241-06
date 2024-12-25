@@ -11,6 +11,13 @@ public class Player {
 		this.turn = turn;
 	}
 	
+	public Player(String id, String name, boolean turn) {
+		this.id = id;
+		this.name = name;
+		this.turn = turn;
+		this.score = 0;
+	}
+	
 	public String getId() {
 		return id;
 	}

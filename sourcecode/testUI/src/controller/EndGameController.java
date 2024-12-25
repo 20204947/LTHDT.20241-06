@@ -38,7 +38,7 @@ public class EndGameController {
 	@FXML
 	private Text winner;
 	
-	public void setPlayer(String id1, String name1, int score1, String id2, String name2, int score2) {
+	protected void setPlayer(String id1, String name1, int score1, String id2, String name2, int score2) {
 		this.id1.setText(id1);
 		this.name1.setText(name1);
 		this.score1.setText(Integer.toString(score1));
@@ -60,7 +60,7 @@ public class EndGameController {
 		this.player2.setScore(score2);
 	}
 	
-	public void setPlayer(String id1, String name1, int score1, String id2, String name2, int score2, boolean surrender) {
+	protected void setPlayer(String id1, String name1, int score1, String id2, String name2, int score2, boolean surrender) {
 		this.id1.setText(id1);
 		this.name1.setText(name1);
 		this.score1.setText(Integer.toString(score1));
@@ -106,12 +106,10 @@ public class EndGameController {
             Stage currentStage = (Stage) yesButton.getScene().getWindow();
             currentStage.close();
             
-            // Load màn hình Match
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/game_board/GameBoard.fxml"));
             Parent root = loader.load();
 
             GameBoardController gameBoardController = loader.getController();
-            
             gameBoardController.setIdAndName(player1.getId(), player1.getName(), player2.getId(), player2.getName());
             
             Stage matchStage = new Stage();
@@ -141,8 +139,7 @@ public class EndGameController {
             
             Stage currentStage = (Stage) noButton.getScene().getWindow();
             currentStage.close();
-            
-            // Load màn hình Match
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main/Main.fxml"));
             Parent root = loader.load();
 

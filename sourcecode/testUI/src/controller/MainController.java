@@ -55,11 +55,9 @@ public class MainController {
 	  @FXML
 	  private void exit() {
 	      try {
-	          // Load giao diện của ExitPopup
 	          FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/exit/Exit.fxml"));
 	          Parent root = loader.load();
 
-	          // Khởi tạo Stage cho popup
 	          Stage popupStage = new Stage();
 	          
 	          popupStage.setResizable(false);
@@ -72,13 +70,10 @@ public class MainController {
 	          popupStage.setScene(new Scene(root));
 	          popupStage.setTitle("Exit Confirmation");
 
-	          // Lấy controller của ExitPopup
 	          ExitController exitController = loader.getController();
 	          
-	          // Truyền Stage chính cho ExitController
 	          exitController.setMainStage((Stage) exitButton.getScene().getWindow());
 
-	          // Hiển thị popup
 	          popupStage.showAndWait();
 	      } catch (IOException e) {
 	          e.printStackTrace();

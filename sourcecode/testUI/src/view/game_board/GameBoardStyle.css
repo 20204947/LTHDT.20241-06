@@ -1,8 +1,99 @@
-.button {
-	-fx-background-color: #add8e6;
+
+
+.anchor-pane-game-board{
+	-fx-background-color: linear-gradient(to bottom, #99FFFF, #FFFFCC);
 }
 
-.button:hover {
-    -fx-text-fill: white;  /* Màu chữ khi hover */
+.pane-avatar1{
+	-fx-border-color: linear-gradient(to right, #FF3333, #FF3300);
+	-fx-border-width: 2px;
+	-fx-border-radius: 10px;
+}
+
+.pane-avatar2{
+	-fx-border-color: linear-gradient(to right, #33FFFF, #99CCFF);
+	-fx-border-width: 2px;
+	-fx-border-radius: 10px;
+}
+
+.rectangle1-eat{
+	-fx-stroke-width: 3px; 
+	-fx-opacity: 0.2;
+	-fx-arc-width: 20; /* Bo góc ngang */
+	-fx-arc-height: 20; /* Bo góc dọc */
+	-fx-fill: linear-gradient(to left, #FF3333, #FF3399);
+}
+
+.rectangle2-eat{
+	-fx-stroke-width: 3px; 
+	-fx-opacity: 0.2;
+	-fx-arc-width: 20; /* Bo góc ngang */
+	-fx-arc-height: 20; /* Bo góc dọc */
+	-fx-fill: linear-gradient(to right, #33FFFF, #99CCFF);
+}
+
+.rectangle1{
+	-fx-stroke-width: 1px; 
+	-fx-opacity: 0.3;
+	-fx-arc-width: 10; /* Bo góc ngang */
+	-fx-arc-height: 10; /* Bo góc dọc */
+	-fx-fill: #f2c1c1;
+}
+
+.rectangle2{
+	-fx-stroke-width: 1px; 
+	-fx-opacity: 0.3;
+	-fx-arc-width: 10; /* Bo góc ngang */
+	-fx-arc-height: 10; /* Bo góc dọc */
+	-fx-fill: #c8c1f8;
+}
+
+.rectangle1:hover, .rectangle2:hover{
+	-fx-cursor: hand; 
+}
+
+.arc1, .arc2{
+	-fx-opacity: 0.3;
+	-fx-stroke-width: 1.1px; 
+}
+
+.setting-text{
+	 -fx-fill: linear-gradient(to right, #FF5733, #FFCC00);
+}
+
+.surrender1-button{
+	-fx-background-color: linear-gradient(to left, #FF3333, #FF3399);
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.5, 0.0, 2.0); /* Thêm hiệu ứng đổ bóng */
+}
+
+.surrender1-button:hover{
+	-fx-cursor: hand;  /* Thay đổi con trỏ khi hover */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.5, 0.0, 2.0); /* Thêm hiệu ứng đổ bóng */
+    -fx-scale-x: 1.2; /* Phóng to theo chiều ngang */
+    -fx-scale-y: 1.2; /* Phóng to theo chiều dọc */
+}
+
+
+.surrender2-button{
+	-fx-background-color: linear-gradient(to right, #33FFFF, #99CCFF);
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.5, 0.0, 2.0); /* Thêm hiệu ứng đổ bóng */
+}
+
+.surrender2-button:hover{
     -fx-cursor: hand;  /* Thay đổi con trỏ khi hover */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.5, 0.0, 2.0); /* Thêm hiệu ứng đổ bóng */
+    -fx-scale-x: 1.2; /* Phóng to theo chiều ngang */
+    -fx-scale-y: 1.2; /* Phóng to theo chiều dọc */
+}
+
+.text-in-scene{
+	-fx-fill: #FF3399;
+}
+
+.player1-text{
+	-fx-fill: linear-gradient(to right, #FF3300, #FF66FF);
+}
+
+.player2-text{
+	-fx-fill: linear-gradient(to right, #0033FF, #0099FF);
 }

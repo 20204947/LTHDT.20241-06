@@ -6,11 +6,14 @@
 }
 
 .button {
-	-fx-background-color: #add8e6;
+	 -fx-background-color: linear-gradient(to right, #33FFFF, #99CCFF);
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.5, 0.0, 2.0); /* Thêm hiệu ứng đổ bóng */
 }
 
 .button:hover {
-    -fx-text-fill: white;  /* Màu chữ khi hover */
     -fx-cursor: hand;  /* Thay đổi con trỏ khi hover */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.5, 0.0, 2.0); /* Thêm hiệu ứng đổ bóng */
+    -fx-scale-x: 1.2; /* Phóng to theo chiều ngang */
+    -fx-scale-y: 1.2; /* Phóng to theo chiều dọc */
 }
 

@@ -13,7 +13,7 @@ public class ErrorEnterTextFieldController {
 	@FXML
 	private Button okButton;
 	
-	public void setError(String err) {
+	protected void setError(String err) {
 		error.setText(err);
 	}
 	

@@ -25,7 +25,7 @@ public class SurrenderController {
 
     private Stage gameBoardStage;
     
-	public void setPlayer(String id1, String name1, int score1, String id2, String name2, int score2, boolean surrender) {
+    protected void setPlayer(String id1, String name1, int score1, String id2, String name2, int score2, boolean surrender) {
 		this.player1.setId(id1);
 		this.player1.setName(name1);
 		this.player1.setScore(score1);
@@ -36,7 +36,7 @@ public class SurrenderController {
 		this.player1.setTurn(surrender);
 	}
 
-    public void setGameBoardStage(Stage gameBoardStage) {
+    protected void setGameBoardStage(Stage gameBoardStage) {
         this.gameBoardStage = gameBoardStage;
     }
 

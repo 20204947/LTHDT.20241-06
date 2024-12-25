@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.Random;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.setting.Setting;
 
 public class StartController {
 	@FXML
@@ -22,12 +20,12 @@ public class StartController {
 	
     private Stage mainStage;
 	
-    public void setMainStage(Stage mainStage) {
+    protected void setMainStage(Stage mainStage) {
         this.mainStage = mainStage;
     }
 	
 	@FXML
-	public void start1() {
+	private void start1() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/start_game/StartGame.fxml"));
             Parent root = loader.load();
@@ -59,7 +57,7 @@ public class StartController {
 	}
 	
 	@FXML
-	public void start2() {
+	private void start2() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/start_game/StartGame2.fxml"));
             Parent root = loader.load();

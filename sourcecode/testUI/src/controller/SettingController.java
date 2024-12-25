@@ -27,14 +27,14 @@ public class SettingController {
 	private TextField valueBigGem;
 	
 	@FXML
-	public void initialize() {
+	private void initialize() {
 		speed.setText(Integer.toString(Setting.getSpeed()));
 		valueSmallGem.setText(Integer.toString(Setting.getValueOfSmallGem()));
 		valueBigGem.setText(Integer.toString(Setting.getValueOfBigGem()));
 	}
 	
 	@FXML
-	public void save() {
+	private void save() {
 	    try {
 	    	if(!validateInputs()) {
 	    		return;
@@ -102,7 +102,7 @@ public class SettingController {
         currentStage.close();
     }
     
-    public void showPopupError(String err) {
+    private void showPopupError(String err) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/popup/ErrorEnterTextField.fxml"));
             Parent root = loader.load();
