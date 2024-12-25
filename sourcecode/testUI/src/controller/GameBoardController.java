@@ -272,7 +272,6 @@ public class GameBoardController{
             }else {
             	changeTurn();
             }
-        	return;
         } else if((gameBoard.getListCell()[indexCell].getListGem().isEmpty()) && (!gameBoard.getListCell()[(indexCell+1)%12].getListGem().isEmpty())){
         	eatByPlayerMove1();
         } else {
@@ -334,7 +333,6 @@ public class GameBoardController{
             }else {
             	changeTurn();
             }
-        	return;
         } else if((gameBoard.getListCell()[indexCell].getListGem().isEmpty()) && (!gameBoard.getListCell()[(12+indexCell-1)%12].getListGem().isEmpty())){
         	eatByPlayerMove2();
         } else {
@@ -537,11 +535,8 @@ public class GameBoardController{
 		for(int i = 7; i<12; i++) {
 			total2 += gameBoard.getListCell()[i].getValue();
 		}
-		if((total1 == 0) || (total2 == 0)) {
-			return true;
-		}
-		return false;
-	}
+        return (total1 == 0) || (total2 == 0);
+    }
 	
 	
 	private void click() {

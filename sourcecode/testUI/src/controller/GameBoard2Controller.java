@@ -318,7 +318,6 @@ public class GameBoard2Controller{
 	    return sequentialTransition;
 	}
 	
-	
 	private void moveCounterClockwiseUntilEmpty() {
 	    
 	    if ((!gameBoard.getListCell()[indexCell].getListGem().isEmpty()) && (indexCell != 0) && (indexCell != 6)) {
@@ -336,7 +335,6 @@ public class GameBoard2Controller{
         	checkEndGame();
         }
 	}
-
 	private SequentialTransition moveGemCounterClockwiseWithReturn() {
 	    SequentialTransition sequentialTransition = new SequentialTransition();
 	    int j = 1;
